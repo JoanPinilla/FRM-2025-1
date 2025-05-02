@@ -35,8 +35,12 @@ Pueden ajustar su comportamiento en función de las condiciones del entorno, com
 
 Como se puede observar en el video, el EV3 está programado para realizar una trayectoria hexagonal. Esto se logra con el siguiente código:
 
+![image](https://github.com/user-attachments/assets/bc7c10e0-4121-4e00-a9b9-26c24136419b)
 
+El programa empieza por hacer un "beep" para indicar que ha iniciado, luego asigana los motores a sus salidas correspondientes y finalmente repite un ciclo 6 veces, 1 por cada lado del hexágono.
 
-Teniendo en cuenta que este ejercicio fue un primer acercamiento, se usaron varios bloques repetidos en vez de un ciclo porque se fue construyendo con prueba y error.
+Dentro del ciclo se puede ver que está la instrucción para mover el robot hacia adelante, y luego para girar primero mueve una rueda. Idealmente, sería suficiente con sólo hacer mover la rueda A. Sin embargo, los giros no son tan consistentes por el terreno que es liso y desnivelado. Por este motivo es que se añade la pequeña compensación al giro con la rueda B.
+
+Durante el último lado del hexágono, la trayectoria tiene un desvío considerable, donde se puede notar más el impacto que tiene el piso sobre el agarre de las ruedas. 
 
 ## 10. Reflexión y Discusión: Sesión de reflexión donde los estudiantes comparten sus experiencias, aprendizajes y posibles mejoras en el uso del robot Kuboki en aplicaciones prácticas.
