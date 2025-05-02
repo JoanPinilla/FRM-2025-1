@@ -29,5 +29,14 @@ Pueden ajustar su comportamiento en función de las condiciones del entorno, com
 ## 8. Modelado del robot real: Realizar el modelado del robot Kuboki y EV3, en coopeliasim.
 
 ## 9. Programa simple de movimientos: Utilizando las herramientas propias del robot, crear un programa sencillo que indique movimientos básicos del robot, como desplazarse hacia adelante, girar a la derecha, etc.
+### KOBUKI
+### EV3
+[![Moviemiento del robot LEGO EV3](https://img.youtube.com/vi/IjDYNgJ66YU/0.jpg)](https://www.youtube.com/watch?v=IjDYNgJ66YU)
+
+Como se puede observar en el video, el EV3 está programado para realizar una trayectoria hexagonal. Esto se logra con el siguiente código:
+
+
+
+Teniendo en cuenta que este ejercicio fue un primer acercamiento, se usaron varios bloques repetidos en vez de un ciclo porque se fue construyendo con prueba y error.
 
 ## 10. Reflexión y Discusión: Sesión de reflexión donde los estudiantes comparten sus experiencias, aprendizajes y posibles mejoras en el uso del robot Kuboki en aplicaciones prácticas.
