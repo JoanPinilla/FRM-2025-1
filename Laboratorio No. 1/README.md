@@ -1,6 +1,18 @@
 # GUÍA 1: Conociendo los robots kuboki y Ev3
 
 ## 1. ¿Qué es un robot móvil? Definir qué es un robot y cuáles son sus principales características.
+### ¿Qué es un robot móvil?
+A diferencia de los robots estacionarios, como muchos robots industriales, los robots móviles pueden navegar por diferentes espacios, adaptándose a diversas condiciones del terreno .
+
+### Características de los robots móviles
+#### Movilidad:
+Pueden desplazarse utilizando ruedas, patas, orugas u otros mecanismos, lo que les permite operar en diversos entornos.
+#### Percepción del entorno:
+Equipados con sensores que les permiten detectar obstáculos, identificar rutas y adaptarse a cambios en el entorno.
+#### Navegación autónoma:
+Capacidad para planificar rutas y desplazarse sin intervención humana, utilizando algoritmos de navegación y mapeo.
+#### Adaptabilidad:
+Pueden ajustar su comportamiento en función de las condiciones del entorno, como terrenos irregulares o presencia de obstáculos, por lo que tienen aplicaciones en sectores como la logística, exploración espacial, agricultura, seguridad y asistencia en el hogar.
 
 ## 2. Presentación de los Robots: Descripción detallada de los robots Kuboki y EV3, incluyendo sus características físicas y capacidades.
 
