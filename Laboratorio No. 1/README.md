@@ -76,7 +76,7 @@ Es un firmware alternativo que permite programar directamente en Python y usando
 
 Como se mencionó anteriormente, el EV3 es compatible con Python a través de _ev3dev-lang-python_. También es compatible con Java usando _LeJOS_ o _EV3Dev_. Para algunas versiones educativas también se puede usar Scratch, el cual es un lenguaje basado en bloques.
 
-## 5. Herramientas de desarrollo propias: Demostración de las herramientas de desarrollo propias de los robots, destacando su utilidad y funcionalidades. (Si es posible). Resumir las herramientas propias que disponen los robots para facilitar la programación y el control.
+## 5. Herramientas de desarrollo propias: Resumir las herramientas propias que disponen los robots para facilitar la programación y el control.
 ## Kobuki
 La clase principal de la API es kobuki::Kobuki, que encapsula la comunicación con el hardware del robot. Para utilizarla, se debe inicializar con un objeto kobuki::Parameters, especificando configuraciones como el puerto serial (device_port) y parámetros de batería. Una vez inicializada, la clase proporciona métodos para:
 * Control de movimiento: setBaseControl(linear_velocity, angular_velocity) permite establecer velocidades lineales y angulares.
@@ -86,6 +86,50 @@ La clase principal de la API es kobuki::Kobuki, que encapsula la comunicación c
 * Estado del robot: Funciones como isAlive(), isEnabled() y batteryStatus() informan sobre el estado operativo y energético del robot.
 
 ## EV3
+### Tipos de bloques de programación
+
+El entorno de programación EV3 se organiza en paletas de bloques, cada una con funciones específicas:
+
+- **Bloques de acción**:  
+  Permiten controlar motores y emitir sonidos. Incluyen bloques para mover motores individuales o múltiples, ajustar la potencia, la dirección y la duración del movimiento.
+
+- **Bloques de sensores**:  
+  Procesan datos de sensores como el táctil, de color, giroscópico, ultrasónico, entre otros. Estos bloques permiten que el robot reaccione a estímulos del entorno.
+
+  ![image](https://github.com/user-attachments/assets/158a1203-c5bd-4a94-bb62-ed2edb69cffc)
+
+
+- **Bloques de flujo**:  
+  Controlan la lógica del programa mediante estructuras como bucles y condicionales. Por ejemplo, el bloque "Switch" permite ejecutar diferentes acciones según condiciones específicas.
+
+  ![image](https://github.com/user-attachments/assets/d9487243-062a-4a43-8015-fc13f858ff4f)
+
+
+- **Bloques de datos**:  
+  Manejan variables, constantes, operaciones matemáticas y lógicas. Estos bloques son esenciales para almacenar y manipular información durante la ejecución del programa.
+
+- **Bloques avanzados**:  
+  Ofrecen funcionalidades como acceso a archivos, registro de datos, comunicación Bluetooth y más, ampliando las capacidades del robot.
+
+- **My Blocks**:  
+  Permiten crear bloques personalizados que encapsulan secuencias de comandos reutilizables, facilitando la organización y reutilización del código.
+
+
+### Personalización avanzada
+
+El software EV3 permite una personalización avanzada mediante las siguientes herramientas:
+
+- **My Blocks con parámetros**:  
+  Al crear un My Block, se pueden definir parámetros de entrada y salida, como números, texto o valores lógicos, lo que permite adaptar el bloque a diferentes situaciones.
+
+- **Variables y constantes**:  
+  Se pueden definir variables para almacenar datos que cambian durante la ejecución del programa, y constantes para valores fijos, facilitando la gestión de la información.
+
+- **Editor de contenido**:  
+  Herramienta que permite personalizar proyectos, agregar notas, imágenes o videos, y adaptar actividades a diferentes niveles educativos.
+
+- **Programación avanzada**:  
+  Además de la interfaz gráfica, EV3 es compatible con lenguajes como Python y Java, permitiendo a usuarios avanzados escribir código más complejo y detallado.
 
 
 ## 6. Sensores del robot Identificar los sensores incorporados en los robots y explicar su funcionamiento. Que compatibildiad tienes con otros sensores.
