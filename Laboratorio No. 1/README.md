@@ -39,11 +39,16 @@ El EV3 es parte de la serie Mindstorms de Lego, el cual es un kit educativo dise
 #### Características:
 - La unidad central EV3 Brick posee una pantalla LCD, botónes de control, altavos y 4 puertos de entrada para sensores y 4 puertos de salida para motores.
 - Incluye sensores de color, contacto, ultrasónicos y giroscopio.
-- La estructura es completamente heca con piezas de Lego, por lo que la creatividad a la hora de crear robots juega un papel fundamental.
+- La estructura es completamente hecha con piezas de Lego.
 
 A través del software de Lego se logra la programación del movimiento del robot de forma sencilla. Sin embargo, también tiene la capacidad de ser programado en lenguajes de programación comunes como Python o Java, lo que eleva la capacidad de experimentación a un nivel mayor.
 
 ## 3. Estado actual del robot y sistema de control.
+### Kobuki
+Físicamente, el robot es completamente funcional a pesar de que se nota cierto desgaste. A través del API o de ROS se puede acceder al sistema de control del Kobuki y programar rutinas como se verá en secciones posteriores.
+
+### EV3
+El robot en general está en buen estado, junto con sus piezas, motores y sensores. Con el brick de control del EV3 se pueden hacer conexiones hacia la aplicación de LEGO con el cual el sistema de control se simplifica mucho, pero también presenta restricciones al ser software privado. 
 
 ## 4. APIs y lenguajes de programación: Identificar las APIs o librerías disponibles para programar los robots. Enumerar los lenguajes de programación compatibles con los robots.
 
@@ -72,6 +77,16 @@ Es un firmware alternativo que permite programar directamente en Python y usando
 Como se mencionó anteriormente, el EV3 es compatible con Python a través de _ev3dev-lang-python_. También es compatible con Java usando _LeJOS_ o _EV3Dev_. Para algunas versiones educativas también se puede usar Scratch, el cual es un lenguaje basado en bloques.
 
 ## 5. Herramientas de desarrollo propias: Demostración de las herramientas de desarrollo propias de los robots, destacando su utilidad y funcionalidades. (Si es posible). Resumir las herramientas propias que disponen los robots para facilitar la programación y el control.
+## Kobuki
+La clase principal de la API es kobuki::Kobuki, que encapsula la comunicación con el hardware del robot. Para utilizarla, se debe inicializar con un objeto kobuki::Parameters, especificando configuraciones como el puerto serial (device_port) y parámetros de batería. Una vez inicializada, la clase proporciona métodos para:
+* Control de movimiento: setBaseControl(linear_velocity, angular_velocity) permite establecer velocidades lineales y angulares.
+* Gestión de LEDs y sonidos: setLed() y playSoundSequence() controlan los indicadores visuales y auditivos.
+* Acceso a sensores: Métodos como getCoreSensorData(), getCliffData() y getInertiaData() proporcionan información de los sensores integrados.
+* Odometría: updateOdometry() calcula la posición del robot basándose en los datos de los encoders y el giroscopio.
+* Estado del robot: Funciones como isAlive(), isEnabled() y batteryStatus() informan sobre el estado operativo y energético del robot.
+
+## EV3
+
 
 ## 6. Sensores del robot Identificar los sensores incorporados en los robots y explicar su funcionamiento. Que compatibildiad tienes con otros sensores.
 El robot Kobuki es una plataforma de base móvil d equipada con una serie de sensores básicos integrados, que permiten tareas de navegación, control y seguridad. Entre los sensores integrados en el Kobuki se encuentran: (1) sensores de contacto o bumpers, (2) sensores de caída de rueda, (3) sensores de acantilado, (4) encoders en las ruedas, (5) giroscopio y (6) receptor infrarrojo.
@@ -86,6 +101,7 @@ En cuanto a compatibilidad, el Kobuki ha sido diseñado con una arquitectura abi
 Asimismo, puede conectarse con IMUs externas para mejorar la estimación de orientación mediante técnicas como el filtro de Kalman extendido (EKF). Sensores ambientales (como de temperatura, humedad o detección de gases) pueden integrarse a través de microcontroladores como Arduino o Raspberry Pi, comunicándose con el sistema principal mediante USB o interfaces seriales compatibles con ROS.
 
 Gracias a su compatibilidad con ROS, el Kobuki puede aprovechar una amplia gama de drivers y paquetes existentes que permiten la incorporación fluida de nuevos sensores y módulos, ampliando significativamente sus capacidades tanto en entornos controlados como en aplicaciones reales de investigación.
+
 ## 7. Práctica de identificación y uso de los sensores integrados en los robots, explicando cómo interactúan con el entorno.
 Durante esta práctica se utilizó la herramienta `rqt_robot_monitor` disponible en ROS 1 para observar el estado en tiempo real de los sensores y componentes del robot Kobuki. Esta interfaz permite validar el funcionamiento correcto del sistema y visualizar la actividad de cada sensor.
 
@@ -332,4 +348,9 @@ Dentro del ciclo se puede ver que está la instrucción para mover el robot haci
 
 Durante el último lado del hexágono, la trayectoria tiene un desvío considerable, donde se puede notar más el impacto que tiene el piso sobre el agarre de las ruedas. 
 
-## 10. Reflexión y Discusión: Sesión de reflexión donde los estudiantes comparten sus experiencias, aprendizajes y posibles mejoras en el uso del robot Kuboki en aplicaciones prácticas.
+## 10. Reflexión y Discusión: experiencias, aprendizajes y posibles mejoras en el uso del robot Kuboki en aplicaciones prácticas.
+### Kobuki
+Como se pudo ver en los videos, el control de este robot se puede hacer de manera precisa a pesar de tener un mayor grado de dificultad. Este tipo de robot móviles, al ser no tan rápido pero precisos y capaces de albergar gran cantidad de sensores, pueden tener aplicaciones avanzadas en logística y distribución. También, en ambientes controlados, pueden llegar a ser grandes robots colaborativos. 
+
+### EV3
+El robot de LEGO fue bastante fácil y divertido de usar. Hacer las conexiones es intuitivo y programarlo también. Es un muy buen elemento de aprendizaje para temas como física clásica, sensores, programación y robótica.
