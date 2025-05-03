@@ -47,6 +47,30 @@ A través del software de Lego se logra la programación del movimiento del robo
 
 ## 4. APIs y lenguajes de programación: Identificar las APIs o librerías disponibles para programar los robots. Enumerar los lenguajes de programación compatibles con los robots.
 
+### Bibliotecas y lenguajes de programación de Kobuki
+#### Kobuki Driver:
+Biblioteca de bajo nivel C++ que permite interactura con los sensores, motores y otros elementos del robot. El driver esta disponible en GitHub con documentación. 
+
+#### ROS:
+El kobuki es compatible en su totalidad con ROS1 (especialmente con Melodic y Kinetic). El robot también cuenta con soporte por parte de la comunidad para ROS2. Entre las bibliotecas destacadas esta _kobuki_node_, _yocs_cmd_vel_mux_, _ecl_ , entre otros. Estas bibliotecas permiten la integración de la navegación, odometría, SLAM, etc.
+
+#### TurtleBot 2 Stack:
+El kobuki forma parte de la plataforma TurbleBot 2, por lo que puede usar los paquetes de ROS de TurtleBot.
+
+El principal lenguaje de programación para manejar al Kobuki es C++, presenta bibliotecas de bajo nivel y muchos de los nodos de ROS en este lenguaje. También se usa ampliamente Python para ROS, teniendo muchos scripts y nodos escritos. Sin embargo, también se puede usar Java o Lua, mediante ROS, para integrar los sistemas.
+
+### Bibliotecas y lenguajes de programación de EV3
+#### Software EV3
+El EV3 presenta un entorno de programación basado en bloques, muy usado en educación por su fácil entendimiento y acceso para todas las edades.
+
+#### EV3Dev
+Este es un sistema operativo basado en Linux en el cual se pueden ejecutar programas en diversos lenguajes (Python, C++, Java, etc).
+
+#### Pybriks
+Es un firmware alternativo que permite programar directamente en Python y usando Bluetooth, sin necesidad de instalar EV3Dev.
+
+Como se mencionó anteriormente, el EV3 es compatible con Python a través de _ev3dev-lang-python_. También es compatible con Java usando _LeJOS_ o _EV3Dev_. Para algunas versiones educativas también se puede usar Scratch, el cual es un lenguaje basado en bloques.
+
 ## 5. Herramientas de desarrollo propias: Demostración de las herramientas de desarrollo propias de los robots, destacando su utilidad y funcionalidades. (Si es posible). Resumir las herramientas propias que disponen los robots para facilitar la programación y el control.
 
 ## 6. Sensores del robot Identificar los sensores incorporados en los robots y explicar su funcionamiento. Que compatibildiad tienes con otros sensores.
