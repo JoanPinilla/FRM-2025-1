@@ -131,6 +131,112 @@ A continuación se presentan imágenes que muestran el comportamiento de los sen
 
 
 ## 8. Modelado del robot real: Realizar el modelado del robot Kuboki y EV3, en coopeliasim.
+Se Tomaron modelos del robot [EV3](https://github.com/albmardom/EV-R3P/tree/master) y [Kobuki](https://grabcad.com/library/interbotix-turtlebot-2i-1), y se importaron en el simulador CoppeliaSim, con el fin de simular el comportamiento de los robots utilizados en laboratorio, dicho modelo se modificó creando distintos objetos para cada una de las partes, y se añadieron junturas de revolución para simular el torque generado.  
+
+Se aseguró de que las medidas fueran las mismas de los robots disponibles, haciendo especial énfasis en el distanciamiento de las ruedas, su diámetro y su ancho, al ser uno de los factores claves para el éxito de la simulación, y se tomó un estimado del peso de estos, para la simulación.
+
+Al no contar con el software de cada uno de los robots dentro del simulador CoppeliaSim, se genero un Script en formato LUA para poder observar su comportamiento, dicho Script realiza una rutina básica de movimiento en forma de cuadrado, teniendo por entradas relevantes el distanciamiento entre ruedas “axleLength”, el radio de las ruedas y las velocidades linear y angular deseadas; dicho Script se observa a continuación, y se modifican los parámetros de inicio según las especificaciones de cada uno de los robots.
+
+```lua
+function sysCall_init()
+    -- Handles
+    leftMotor = sim.getObjectHandle("RJ")  --object asignation 
+    rightMotor = sim.getObjectHandle("LJ")
+    robotBase = sim.getObjectAssociatedWithScript(sim.handle_self)
+
+    -- Robot parameters
+    wheelRadius = 0.035 --m
+    axleLength = 0.23   --m
+
+    -- Motion parameters
+    linearSpeed = 0.4-- m/s
+    angularSpeed = 0.5 -- rad/s
+    wheelLinearVelocity = linearSpeed / wheelRadius
+    wheelAngularVelocity = (angularSpeed * axleLength / 2) / wheelRadius
+
+    -- State control
+    step = 1
+    segment = 0
+    moving = false
+end
+
+function startForward()
+    startPos = sim.getObjectPosition(robotBase, -1)
+    sim.setJointTargetVelocity(leftMotor, wheelLinearVelocity)
+    sim.setJointTargetVelocity(rightMotor, wheelLinearVelocity)
+    moving = true
+end
+
+function checkForward()
+    currentPos = sim.getObjectPosition(robotBase, -1)
+    dx = currentPos[1] - startPos[1]
+    dy = currentPos[2] - startPos[2]
+    distance = math.sqrt(dx*dx + dy*dy)
+    if distance >= 1.0 then
+        sim.setJointTargetVelocity(leftMotor, 0)
+        sim.setJointTargetVelocity(rightMotor, 0)
+        moving = false
+        return true
+    end
+    return false
+end
+
+function startTurn()
+    startAngle = sim.getObjectOrientation(robotBase, -1)[3]
+    sim.setJointTargetVelocity(leftMotor, -wheelAngularVelocity)
+    sim.setJointTargetVelocity(rightMotor, wheelAngularVelocity)
+    moving = true
+end
+
+function checkTurn()
+    currentAngle = sim.getObjectOrientation(robotBase, -1)[3]
+    deltaAngle = currentAngle - startAngle
+    if deltaAngle < -math.pi then deltaAngle = deltaAngle + 2 * math.pi end
+    if deltaAngle > math.pi then deltaAngle = deltaAngle - 2 * math.pi end
+    if math.abs(deltaAngle) >= math.pi / 2 then
+        sim.setJointTargetVelocity(leftMotor, 0)
+        sim.setJointTargetVelocity(rightMotor, 0)
+        moving = false
+        return true
+    end
+    return false
+end
+
+function sysCall_actuation()
+    if step <= 8 then
+        if not moving then
+            if step % 2 == 1 then
+                startForward()
+            else
+                startTurn()
+            end
+        else
+            if step % 2 == 1 then
+                if checkForward() then step = step + 1 end
+            else
+                if checkTurn() then step = step + 1 end
+            end
+        end
+    end
+end
+
+```
+
+los resultados de las simulaciones pueden ser visto en lo iguientes videos:
+
+### Simulacion Lego EV3
+[![Simulación LEGO EV3](https://img.youtube.com/vi/ogT6Gf_eBSU/0.jpg)](https://www.youtube.com/watch?v=ogT6Gf_eBSU)
+
+### Simulacion KOBUKI
+
+[![Simulación KOBUKI](https://img.youtube.com/vi/zChXzVlUzIU/0.jpg)](https://www.youtube.com/watch?v=zChXzVlUzIU)
+
+Las escenas completas en CoppeliaSim se pueden encontrar en:
+
+[Lego EV3](https://github.com/JoanPinilla/FRM-2025-1/blob/main/Laboratorio%20No.%201/Lego.ttt)
+
+[KOBUKI](https://github.com/JoanPinilla/FRM-2025-1/blob/main/Laboratorio%20No.%201/Kobuki.ttt)
+
 
 ## 9. Programa simple de movimientos: Utilizando las herramientas propias del robot, crear un programa sencillo que indique movimientos básicos del robot, como desplazarse hacia adelante, girar a la derecha, etc.
 ### KOBUKI
