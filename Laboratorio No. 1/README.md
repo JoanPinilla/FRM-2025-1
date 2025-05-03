@@ -16,6 +16,33 @@ Pueden ajustar su comportamiento en función de las condiciones del entorno, com
 
 ## 2. Presentación de los Robots: Descripción detallada de los robots Kuboki y EV3, incluyendo sus características físicas y capacidades.
 
+### Robot Kuboki
+
+El kuboki es una base robótica móvil diseñada como plataforma de desarrollo para investigación y prototipado.
+
+#### Características:
+- Dimensiones: 35 cm de diámetro y 14 cm de altura.
+- Peso: Aproximadamente 2.5 kg (sin carga).
+- Chasis: Ruedas diferenciales.
+- Sensores:
+  -  Bumpers
+  -  Sensores de proximidad
+  -  Giroscopio y acelerómetro
+- Puerto USB y serial
+
+Este robot tiene la capacidad de implementar paquetes de navegación autónoma, haciendo uso de ROS y sensores adicionales, lo que a su vez permite que el robot pueda detectar obstáculos. Una de las mayores ventajas del robot es la capacidad de personalización que tiene, ya que se le pueden montar distintos tipos de cámaras, sensores LIDAR, brazos robóticos, etc.
+
+### Robot Lego Mindstorm EV3
+
+El EV3 es parte de la serie Mindstorms de Lego, el cual es un kit educativo diseñado para introducir a los niños a la robótica y la programación. Su ventaja principal es su modularidad, lo que permite construir múltiples robots con los mismos componentes de Lego.
+
+#### Características:
+- La unidad central EV3 Brick posee una pantalla LCD, botónes de control, altavos y 4 puertos de entrada para sensores y 4 puertos de salida para motores.
+- Incluye sensores de color, contacto, ultrasónicos y giroscopio.
+- La estructura es completamente heca con piezas de Lego, por lo que la creatividad a la hora de crear robots juega un papel fundamental.
+
+A través del software de Lego se logra la programación del movimiento del robot de forma sencilla. Sin embargo, también tiene la capacidad de ser programado en lenguajes de programación comunes como Python o Java, lo que eleva la capacidad de experimentación a un nivel mayor.
+
 ## 3. Estado actual del robot y sistema de control.
 
 ## 4. APIs y lenguajes de programación: Identificar las APIs o librerías disponibles para programar los robots. Enumerar los lenguajes de programación compatibles con los robots.
