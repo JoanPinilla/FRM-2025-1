@@ -1,0 +1,1 @@
+# Verificación modelo cinematico
