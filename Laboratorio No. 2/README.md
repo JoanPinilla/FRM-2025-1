@@ -20,8 +20,11 @@ Repositorio para llevar registro de las actividades realizadas en el laboratorio
 
 ### 2.1 Sensor Hokuyo
 Comenzando con la práctica para el sensor Hokuyo URG-04LX-UG01, se creó el espacio de trabajo que se puede ver en la _Figura 2.1.1_.
-INSERTAR FIGURA
+---
+_Figura 2.1.1: Plano del espacio de trabajo:_
 
+![mapaReal](https://github.com/user-attachments/assets/9e1cf951-c2d1-4c10-948b-69d7b0edeba3)
+---
 Se escogieron las 3 poses siguientes:
 
 - **Pose 1**
@@ -39,26 +42,26 @@ Se escogieron las 3 poses siguientes:
  
 Para la toma de datos primero se hizo la configuración del lidar, iniciando el objeto en MATLAB. Luego se realizaron 3 escaneos con 3 segundos de diferencia entre ellos. Esto haciendo uso de la función **LidarScan.m**. Con esta función se manda un mensaje al lidar mediante el protocolo SCIP 2.0. Este mensaje es _GD0044072500_ el cual hace la petición de toma de datos en el ángulo establecido. Luego de hacer los escaneos se crean los arrays para cada pose. Estos arrays tienen forma _[num_escaneos, n_pasos]_. 
 
-Para la visualización de los datos primero se hizo un promedio entre las medidas de los 3 escaneos para cada paso,que a su vez se realizó para cada pose. Se generó un vector de angulos, el cual tiene los rangos de los angulos escaneados y su longitud es igual a la cantidad de pasos en dicho escaneo. Con estos dos arrays, se usaron las funciones **lidarScan** para visualizar los puntos escaneados (_Figura 2.2.2_) y **occumancyMap** para ver el mapa de ocupación local con la pose del lidar definida (_Figuras 2.2.3, 2.2.4 y 2.2.5_). Una vez se tenían los 3 mapas de ocupación referentes a las 3 poses, se usó **buildMap** para crear el mapa global uniendo los 3 mapas locales (_Figura 2.2.6_).
+Para la visualización de los datos primero se hizo un promedio entre las medidas de los 3 escaneos para cada paso,que a su vez se realizó para cada pose. Se generó un vector de angulos, el cual tiene los rangos de los angulos escaneados y su longitud es igual a la cantidad de pasos en dicho escaneo. Con estos dos arrays, se usaron las funciones **lidarScan** para visualizar los puntos escaneados (_Figura 2.1.2_) y **occumancyMap** para ver el mapa de ocupación local con la pose del lidar definida (_Figuras 2.1.3, 2.1.4 y 2.1.5_). Una vez se tenían los 3 mapas de ocupación referentes a las 3 poses, se usó **buildMap** para crear el mapa global uniendo los 3 mapas locales (_Figura 2.1.6_).
 
 ---
-_Figura 2.2.2: Escaneo para Pose 1:_
+_Figura 2.1.2: Escaneo para Pose 1:_
 
 ![scan1](https://github.com/user-attachments/assets/6a059f93-ba7e-42d3-8fec-66644a1e17a3)
 ---
-_Figura 2.2.3: Mapa local para Pose 1:_
+_Figura 2.1.3: Mapa local para Pose 1:_
 
 ![mapa1](https://github.com/user-attachments/assets/8990bf12-f871-4ed2-9d1c-545b81878495)
 ---
-_Figura 2.2.4: Mapa local para Pose 2:_
+_Figura 2.1.4: Mapa local para Pose 2:_
 
 ![mapa2](https://github.com/user-attachments/assets/f88b2b5d-a809-47c6-a9c8-cf98151317f7)
 ---
-_Figura 2.2.5: Mapa local para Pose 3:_
+_Figura 2.1.5: Mapa local para Pose 3:_
 
 ![mapa3](https://github.com/user-attachments/assets/b1e24ec7-96ac-4d53-858a-2b8b823154aa)
 ---
-_Figura 2.2.6: Mapa global:_
+_Figura 2.1.6: Mapa global:_
 
 ![mapaT](https://github.com/user-attachments/assets/40691bf0-33a8-47f6-b707-0146b9ada72c)
 ---
