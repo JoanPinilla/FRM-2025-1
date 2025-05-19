@@ -37,9 +37,9 @@ Se escogieron las 3 poses siguientes:
   - **Coordenada Y:** 65.3 cm
   - **Dirección theta:** 18°
  
-Para la toma de datos primero se hizo la configuración del lidar, iniciando el objeto en MATLAB. Luego se realizaron 3 escaneos con 3 segundos de diferencia entre ellos. Esto haciendo uso de la función **LidarScan.m**. Con esta función se manda un mensaje al lidar mediante el protocolo SCIP 2.0. Este mensaje es "GD0044072500" el cual hace la petición de toma de datos en el ángulo establecido. Luego de hacer los escaneos se crean los arrays para cada pose. Estos arrays tienen forma _[num_escaneos, n_pasos]_. 
+Para la toma de datos primero se hizo la configuración del lidar, iniciando el objeto en MATLAB. Luego se realizaron 3 escaneos con 3 segundos de diferencia entre ellos. Esto haciendo uso de la función **LidarScan.m**. Con esta función se manda un mensaje al lidar mediante el protocolo SCIP 2.0. Este mensaje es _GD0044072500_ el cual hace la petición de toma de datos en el ángulo establecido. Luego de hacer los escaneos se crean los arrays para cada pose. Estos arrays tienen forma _[num_escaneos, n_pasos]_. 
 
-Para la visualización de los datos primero se hizo un promedio entre las medidas de los 3 escaneos para cada paso,que a su vez se realizó para cada pose. Se generó un vector de angulos, el cual tiene los rangos de los angulos escaneados y su longitud es igual a la cantidad de pasos en dicho escaneo. Con estos dos arrays, se usaron las funciones **lidarScan** para visualizar los puntos escaneados y **occumancyMap** para ver el mapa de ocupación local con la pose del lidar definida. Una vez se tenían los 3 mapas de ocupación referentes a las 3 poses, se usó **buildMap** para crear el mapa global uniendo los 3 mapas locales.
+Para la visualización de los datos primero se hizo un promedio entre las medidas de los 3 escaneos para cada paso,que a su vez se realizó para cada pose. Se generó un vector de angulos, el cual tiene los rangos de los angulos escaneados y su longitud es igual a la cantidad de pasos en dicho escaneo. Con estos dos arrays, se usaron las funciones **lidarScan** para visualizar los puntos escaneados (_Figura 2.2.2_) y **occumancyMap** para ver el mapa de ocupación local con la pose del lidar definida (_Figuras 2.2.3, 2.2.4 y 2.2.5_). Una vez se tenían los 3 mapas de ocupación referentes a las 3 poses, se usó **buildMap** para crear el mapa global uniendo los 3 mapas locales (_Figura 2.2.6_).
 
 ---
 _Figura 2.2.2: Escaneo para Pose 1:_
@@ -63,6 +63,10 @@ _Figura 2.2.6: Mapa global:_
 ![mapaT](https://github.com/user-attachments/assets/40691bf0-33a8-47f6-b707-0146b9ada72c)
 ---
 
+En general los mapas son muy parecidos a los espacios físicos. Hay algunas paredes se sobreponen y otras que tienen ondulaciones. También se puede observar que, aunque el lidar tiene una zona muerta de 120°, cuando se combinan los mapas de las 3 poses, esa zona muerta se reconstruye con las otras perspectivas.
+
+---
+__
 ### 2.2 Sensor RPLidar
 Para la práctica de este sensor se organizó el espacio de trabajo como se puede ver en la siguiente _Figura 2.2.1_. 
 
@@ -117,18 +121,33 @@ _Figura 2.2.6: Mapa de ocupación global:_
 
 Como se puede observar, el mapa de ocupación es en gran parte semejane con el espacio real. Sin embargo, presenta alguas dimensiones erroneas, cerca a la Pose 3. Estos problemas se deben a que en la creación del  espacio de trabajo por equivocación se modificó el mapa de manera que entre las Poses hay ligeras diferencias. A pesar de esto, cada mapa local representa de forma acertada los espacios que tomaron en la maqueta.
 
+---
+#### Fotos
+_Figura 2.2.7: Pose 1:_
+
+![Pose1](https://github.com/user-attachments/assets/54f2b5f2-6de2-4e84-9812-230a60632f9c)
+---
+_Figura 2.2.8: Pose 2:_
+
+![Pose2](https://github.com/user-attachments/assets/54949db9-3b22-4f69-a9b3-b8f0837fd605)
+---
+_Figura 2.2.9: Pose 3:_
+
+![Ñls](https://github.com/user-attachments/assets/b4b101ca-fe98-4a30-a260-62295c14396c)
+---
+
 #### Fotos 
-Figura 2.2.7: Pose 1
+_Figura 2.2.7: Pose 1_
 
 ![Pose1raw](https://github.com/user-attachments/assets/688266bf-f409-4d40-8958-b169ecdffbb0)
 ---
 
-Figura 2.2.8: Pose 2
+_Figura 2.2.8: Pose 2_
 
 ![Pose2raw](https://github.com/user-attachments/assets/1c02a293-fd44-4464-90e0-19e076a12b6c)
 ---
 
-Figura 2.2.9: Pose 3
+_Figura 2.2.9: Pose 3_
 
 ![Pose3raw](https://github.com/user-attachments/assets/650eed18-f9e3-465f-99cb-664aa9155ea2)
 ---
