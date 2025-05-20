@@ -34,7 +34,9 @@ El error sistemático de medida es un componente del error de medida que, en med
 ## 2. Sensores
 
 ### 2.1 Sensor Hokuyo
+
 Comenzando con la práctica para el sensor Hokuyo URG-04LX-UG01, se creó el espacio de trabajo que se puede ver en la _Figura 2.1.1_.
+
 ---
 _Figura 2.1.1: Plano del espacio de trabajo:_
 
