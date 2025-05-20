@@ -15,6 +15,21 @@ Repositorio para llevar registro de las actividades realizadas en el laboratorio
 
 
 ## 1. Búsqueda bibliográfica
+- **¿Qué es el Vocabulario Internacional de Metrología (VIM)?**
+  
+Según el Centro Español de Metrología, el VIM es un diccionario terminológico que contiene las denominaciones y definiciones que conciernen a la metrología, la ciencia de las mediciones y sus aplicaciones. Este VIM abarca princios relativos de las magnitudes y unidades.
+
+- **Según el VIM, defina los siguientes conceptos:**
+  
+  - Exactitud de medida: Proximidad entre un valor medido y un valor verdadero de un mensurando.
+  - Precisión de medida: Proximidad entre los valores medidos obtenidos en mediciones repetidas de un mismo objeto bajo condiciones especificas.
+  - Error de medida: Diferencia entre un valor medido de una magnitud y un valor de referencia.
+  - Incertidumbre de medida: Parámetro no negativo que caracteriza la dispersión de los valores atribuidos a un mensurando, a partir de la información que se utiliza.
+
+- **Explique la diferencia entre un error sistemático y un error aleatorio**
+  
+El error sistemático de medida es un componente del error de medida que, en mediciones repetidas, permanece constante o varía de manera predecible. Mientras que el error aleatorio es el otro componente que, en mediciones repetidas, varía de manera impredecible.
+
 
 ## 2. Sensores
 
