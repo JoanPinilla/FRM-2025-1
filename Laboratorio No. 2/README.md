@@ -174,6 +174,30 @@ _Figura 2.2.9: Pose 3_
 
 ### 2.3 Sensor ultrasonido
 
+#100 cm
+Media: 97.1886
+Desviación estándar: 0.3109
+Error absoluto medio: 2.8114
+Error relativo medio: 2.81%
+
+![data100](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/100_data.svg)
+
+#140 cm
+Media: 132.9971
+Desviación estándar: 9.8831
+Error absoluto medio: 7.0029
+Error relativo medio: 5.00%
+
+![data140](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/140_data.svg)
+
+#150 cm
+Media: 145.5017
+Desviación estándar: 5.5401
+Error absoluto medio: 4.4983
+Error relativo medio: 3.00%
+
+![data150](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/150_data.svg)
+
 ### 2.4 Sensores Lego
 
 ## 3. ROS
