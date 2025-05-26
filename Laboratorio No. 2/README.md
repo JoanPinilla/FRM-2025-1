@@ -7,16 +7,18 @@ Integrantes:
 -
 
 ## Contenido
-- [1. Busqueda bibliografica](#busqueda-bibliografica)
-- [2. Sensores](#2-sensores)
-  - [2.1 Sensor Hokuyo]
-  - Sensor RPLidar
-  - Sensor ultrasonido
-  - Sensores Lego
-- ROS
-  - Uso de ROS
-  - ROS Kuboki
-  - ROS Lego EV3
+- [Busqueda bibliografica](#busqueda-bibliografica)
+- [Sensores](#sensores)
+  - [Sensor Hokuyo](#sensor-hokuyo)
+  - [Sensor RPLidar](#sensor-rplidar)
+  - [Sensor ultrasonido](#sensor-ultrasonido)
+  - [Sensores Lego](#sensor-lego)
+    - [Sensor infrarrojo](#sensor-infrarrojo)
+    - [Sensor Encoder](#sensor-encoder)
+- [ROS](#ros)
+  - [Uso de ROS](#uso-de-ros)
+  - [ROS Kuboki](#ros-kobuki)
+  - [ROS Lego EV3](#ros-lego-ev3)
 
 
 ## Busqueda bibliografica
@@ -36,9 +38,9 @@ Según el Centro Español de Metrología, el VIM es un diccionario terminológic
 El error sistemático de medida es un componente del error de medida que, en mediciones repetidas, permanece constante o varía de manera predecible. Mientras que el error aleatorio es el otro componente que, en mediciones repetidas, varía de manera impredecible.
 
 
-## 2 Sensores
+## Sensores
 
-### 2.1 Sensor Hokuyo
+### Sensor Hokuyo
 
 Comenzando con la práctica para el sensor Hokuyo URG-04LX-UG01, se creó el espacio de trabajo que se puede ver en la _Figura 2.1.1_.
 
@@ -92,7 +94,7 @@ En general los mapas son muy parecidos a los espacios físicos. Hay algunas pare
 
 ---
 __
-### 2.2 Sensor RPLidar
+### Sensor RPLidar
 Para la práctica de este sensor se organizó el espacio de trabajo como se puede ver en la siguiente _Figura 2.2.1_. 
 
 ---
@@ -177,7 +179,7 @@ _Figura 2.2.9: Pose 3_
 ![Pose3raw](https://github.com/user-attachments/assets/650eed18-f9e3-465f-99cb-664aa9155ea2)
 ---
 
-### 2.3 Sensor ultrasonido
+### Sensor ultrasonido
 
 # 100 cm
 Media: 97.1886  
@@ -213,8 +215,11 @@ Error relativo medio: 3.00%
 
 ![comp](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/comp.svg)
 
-### 2.4 Sensores Lego
+### Sensores Lego
 
-## 3. ROS
+## ROS
 
-### 3.1 Uso de ROS
+### Uso de ROS
+
+￼
+
