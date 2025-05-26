@@ -1,10 +1,15 @@
-# FRM-2025-1
-Repositorio para llevar registro de las actividades realizadas en el laboratorio de Fundamentos de Robótica Móvil.
+# Laboratorio No. 2
+
+Integrantes:
+- Eduardo Cuadros Montealegre
+-
+-
+-
 
 ## Contenido
-- Búsqueda bibliográfica
-- Sensores
-  - Sensor Hokuyo
+- [1. Busqueda bibliografica](#busqueda-bibliografica)
+- [2. Sensores](#2-sensores)
+  - [2.1 Sensor Hokuyo]
   - Sensor RPLidar
   - Sensor ultrasonido
   - Sensores Lego
@@ -14,7 +19,7 @@ Repositorio para llevar registro de las actividades realizadas en el laboratorio
   - ROS Lego EV3
 
 
-## 1. Búsqueda bibliográfica
+## Busqueda bibliografica
 - **¿Qué es el Vocabulario Internacional de Metrología (VIM)?**
   
 Según el Centro Español de Metrología, el VIM es un diccionario terminológico que contiene las denominaciones y definiciones que conciernen a la metrología, la ciencia de las mediciones y sus aplicaciones. Este VIM abarca princios relativos de las magnitudes y unidades.
@@ -31,7 +36,7 @@ Según el Centro Español de Metrología, el VIM es un diccionario terminológic
 El error sistemático de medida es un componente del error de medida que, en mediciones repetidas, permanece constante o varía de manera predecible. Mientras que el error aleatorio es el otro componente que, en mediciones repetidas, varía de manera impredecible.
 
 
-## 2. Sensores
+## 2 Sensores
 
 ### 2.1 Sensor Hokuyo
 
