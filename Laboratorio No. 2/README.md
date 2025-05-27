@@ -2,9 +2,9 @@
 
 Integrantes:
 - Eduardo Cuadros Montealegre
--
--
--
+- Andrés S Serna
+- Joan Pinilla
+- Nicolás Moreno
 
 ## Contenido
 - [Busqueda bibliografica](#busqueda-bibliografica)
