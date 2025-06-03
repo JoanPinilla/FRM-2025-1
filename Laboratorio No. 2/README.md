@@ -216,10 +216,32 @@ Error relativo medio: 3.00%
 ![comp](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/comp.svg)
 
 ### Sensores Lego
+#### RECORRIDO DE 1 METRO AL 30% DE VELOCIDAD
+El momtaje de este experimento donde se quiere comprobar la incertidumbre de medida en los sensores y actuadores utilizados en los kits LEGO EV3 se puede ver en la siguiente figura:
+![image](https://github.com/user-attachments/assets/60e28985-ea41-4998-9c28-0af91cfdec5d)
+
+El montaje consiste en el robot EV3, la cinta métrica y una pared. 
+
+![image](https://github.com/user-attachments/assets/fa8dcd5c-821f-4785-877c-070e7e753b1a)
+![image](https://github.com/user-attachments/assets/d01ce5f9-caac-4e1f-999f-5ffce5d967a1)
+
+
+
+#### RECORRIDO DE 1 METRO AL 100% DE VELOCIDAD
+![image](https://github.com/user-attachments/assets/efd0d2b8-1c33-466c-ac83-fb44798f2c98)
+
+#### MEDIDAS DE ÁNGULOS
+[![Prueba de video](https://img.youtube.com/vi/eh_VdQ6DnPY/0.jpg)](https://youtu.be/eh_VdQ6DnPY)
+
+
+
+
+
+
 
 ## ROS
 
 ### Uso de ROS
 
-￼
-
+### ROS LEGO EV3
+[![Rutina de movimiento](https://img.youtube.com/vi/Z_H9IneXhU8/maxresdefault.jpg)](https://youtu.be/Z_H9IneXhU8)
