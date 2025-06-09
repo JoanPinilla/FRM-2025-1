@@ -120,14 +120,7 @@ valores de los parámetros MinIterations y ConnectionDistance.
 
 
 # Simulación en CoppeliaSim
-5.1. Abra la escena de CoppeliaSim mapa2.ttt.
-5.2. Si el ancho o alto de su mapa es mayor a 5 m, elimine el piso por defecto, de la carpeta
-infrastructure → floors del Model Browser cargue un resizable floor de acuerdo con el
-tamaño requerido por su mapa. En caso contrario deje el piso por defecto.
-5.3. Abra la ventana de propiedades del objeto paredes, seleccione View/modify geometry y
-escale las dimensiones x, y y z para que correspondan a su mapa y a una altura adecuada
-para presentación de su robot dentro de la escena. Mueva las paredes para que la posición
-en la escena corresponda con la posición en el mapa.
+
 5.4. Adicione uno o más Force Sensor y úselos como medio de fijación de las paredes al piso.
 Figura 1
 5.5. Adicione el robot asignado en la pose inicial usada en su planeación de rutas.
@@ -135,13 +128,19 @@ Figura 1
 liaSim con MATLAB.
 5.7. Presente una imagen de la escena donde sean visibles las dimensiones de las paredes y el
 robot.
+![Captura de pantalla 2025-06-09 122142](https://github.com/user-attachments/assets/81627718-2773-4a8e-891a-7456389ce71d)
+
+
 # Simulación MATLAB Y COPPELIASIM
-6.1. Seleccione a su gusto una de las dos rutas obtenidas (PRM o RRT).
-6.2. Realice un algoritmo en Matlab para aplicar el controlador PurePursuit al robot y realice
-la ruta planeada. Ajuste los parámetros de control que correspondan. Repasar el algoritmo
-Path Following for a Differential Drive Robot.
-6.3. Modifique el algoritmo de forma adecuada de manera que el valor de velocidad de ruedas
-dado por el controlador sea transmitido a CoppeliaSim y el robot cumpla con la trayectoria
-del punto de inicio al punto objetivo.
-6.4. Capture la simulación con un vı́deo y anéxelo a su informe.
+Para establecer la conexión entre MATLAB y CoppeliaSim de forma robusta y funcional, se utilizó la Remote API de CoppeliaSim, que permite a MATLAB actuar como cliente y enviar comandos directamente al simulador. Este procedimiento inició con la instrucción `simxFinish(-1)`, que garantiza la terminación de cualquier conexión previa con el servidor de CoppeliaSim, previniendo errores de conflicto o comunicación duplicada que podrían surgir si una sesión anterior no se cerró correctamente. Seguidamente, se ejecutó `simxStart` con los parámetros correspondientes para establecer una nueva conexión TCP/IP con el servidor en la dirección localhost (`'127.0.0.1'`) y el puerto `19000`, habilitado previamente desde el script de CoppeliaSim mediante un puerto de servidor explícito.
+
+El protocolo utilizado fue sincrónico, empleando el flag `true` en la opción de reconexión (`waitUntilConnected`), lo que asegura que el proceso de conexión no continúe hasta que esta se haya establecido satisfactoriamente. Una vez que la conexión fue exitosa (es decir, `clientID` > -1), se procedió a la transmisión de datos necesarios para ejecutar el movimiento del robot sobre el entorno simulado.
+
+La trayectoria previamente calculada en MATLAB se descompuso en una secuencia de puntos cartesianos, los cuales se enviaron uno a uno a CoppeliaSim como señales de cadena utilizando la función `simxWriteStringStream`. Cada punto fue transformado a un formato serializado (por ejemplo, `simxPackFloats`) que convierte el vector de coordenadas en un arreglo de bytes compatible con el sistema de señales de CoppeliaSim. Estas señales se nombraron de forma consistente, por ejemplo `waypointData`, para que el script de control en CoppeliaSim pudiera identificar y leer el flujo de datos correspondiente mediante el uso de funciones como `sim.readStringStream` y `sim.unpackFloatTable`.
+
+Entre cada envío de punto se introdujo una pausa breve (`pause(0.1)`), que garantiza que CoppeliaSim reciba y procese la señal antes de que se transmita el siguiente punto. Este mecanismo actúa como una forma básica de sincronización, especialmente útil cuando la ejecución en CoppeliaSim depende de secuencias ordenadas de eventos o cuando se espera una respuesta del simulador antes de continuar. Alternativamente, se podrían implementar protocolos de handshaking más complejos si se requiere retroalimentación del simulador.
+
+En el entorno de CoppeliaSim, un script asociado al robot (escrito en Lua) se encargó de interpretar las señales recibidas y ejecutar los movimientos físicos correspondientes. Esto se realizó mediante funciones de movimiento como `sim.setObjectPosition` o comandos de navegación más avanzados que procesaban los waypoints como nodos de una trayectoria. El robot siguió estos puntos de forma secuencial, permitiendo verificar en tiempo real la eficacia del planificador de rutas y del mecanismo de control.
+
+Una vez completada la transmisión de todos los puntos y concluida la simulación del movimiento, se finalizó la sesión cerrando la conexión mediante `simxFinish(clientID)`, liberando los recursos asociados y asegurando una desconexión limpia.
 # Conclusiones
