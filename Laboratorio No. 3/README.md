@@ -60,11 +60,13 @@ Integrantes:
 **2.1. Descripción**
 La misión consiste en utilizar un algoritmo Bug para navegar desde un punto de partida hasta una meta con dos obstáculos interceptando la línea que une ambos puntos. El espacio de trabajo escogido, visualizado en la siguiente foto, consta de una línea negra trazada entre el inicio y la meta. Dicha línea hace parte del algoritmo de solución usado, el cual es el *Bug 2*.
 
-**FOTO DEL MAPA**
+![espacio1](https://github.com/user-attachments/assets/9db73f86-8878-4133-b359-8a46799abb41)
+
 
 El robot se preparó con 4 sensores: Un sensor de color apuntando al piso encargado de seguir la línea negra; un sensor ultrasónico apuntando al frente y detectando obstáculos cercanos; sensor infrarrojo apuntando hacia el lado izquierdo actuando cuando el robot bordea un obstáculo para verificar distancias adecuadas entre el robot y este; y un giroscopio para hacer un control más preciso del cambio de orientación del robot. Dicha configuración se visualiza en la siguiente foto.
 
-**FOTO DEL ROBOT**
+![Imagen de WhatsApp 2025-06-16 a las 18 53 03_9228d340](https://github.com/user-attachments/assets/2f95dd4b-9cfe-4249-ad3b-79777d5bd5bc)
+
 
 **2.2. Algoritmo de solución**
 
