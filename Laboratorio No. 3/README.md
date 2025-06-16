@@ -71,7 +71,6 @@ El robot se preparó con 4 sensores: Un sensor de color apuntando al piso encarg
 El algoritmo Bug 2 implementado para esta misión es el siguiente:
 
 ~~~
-
 Inicio:
     - Resetear *ángulo*
     - Definir B y C como puertos de motores
