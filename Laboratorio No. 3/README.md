@@ -72,7 +72,7 @@ El algoritmo Bug 2 implementado para esta misión es el siguiente:
 
 ~~~
 Inicio:
-    - Resetear *ángulo*
+    - Resetear ángulo
     - Definir B y C como puertos de motores
     - EncontrarLinea()
 
@@ -100,7 +100,7 @@ Función EncontrarLinea():
 Fin Función
 
 Función SeguirLinea():
-    Si lectura de *color*  = negro
+    Si lectura de color  = negro
         Avanzar hacia la izquierda
     Sino 
         Avanzar hacia la derecha
@@ -109,8 +109,8 @@ Fin Función
 
 Función EsquivarObstáculo():
     RotarDerecha(80):
-    Mientras *color* ≠ negro
-        Si *distancia lateral(infrarrojo)* < 15%
+    Mientras color ≠ negro
+        Si distancia lateral(infrarrojo) < 15%
             RotarDerecha(5)
             Avanzar con velocidad 12% y ángulo de 7° hacia izquierda
         Sino
@@ -120,8 +120,8 @@ Función EsquivarObstáculo():
 Fin Función
 
 Función RotarDerecha(grados):
-    Resetear *ángulo*
-    Mientras  *ángulo* < grados
+    Resetear ángulo
+    Mientras  ángulo < grados
         Avanzar con velocidad 12% y ángulo 15° hacia derecha
     Fin Mientras
 Fin Función
