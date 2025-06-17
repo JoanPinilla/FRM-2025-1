@@ -135,7 +135,7 @@ Aunque la misión se desarrolló de manera satisfactoria, se tuvieron varios pro
 
 **2.3. Video**
 
-
+[![Ver Video](Laboratorio%20No.%203/mision1/thumbnail.png)](Laboratorio%20No.%203/mision1/video_mision1.mp4)
 
 # 3. Misión 2 
 
