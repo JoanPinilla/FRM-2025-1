@@ -216,7 +216,6 @@ Error relativo medio: 3.00%
 ![comp](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/comp.svg)
 
 ### Sensores Lego
-
 ## ROS
 
 ### Uso de ROS
@@ -242,6 +241,36 @@ Este fragmento de código espera a que el servicio esté disponible, lo conecta 
 **Ejecución y Análisis del Script pycuadrado.py**
 
 El script pycuadrado.py fue proporcionado como ejemplo para demostrar cómo se pueden utilizar servicios y comandos de velocidad para lograr que la tortuga dibuje una figura específica. En este caso, el programa está diseñado para que turtle1 dibuje un cuadrado en la pantalla.
+
+#### RECORRIDO DE 1 METRO AL 30% DE VELOCIDAD
+El montaje de este experimento donde se quiere comprobar la incertidumbre de medida en los sensores y actuadores utilizados en los kits LEGO EV3 se puede ver en la siguiente figura:
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/60e28985-ea41-4998-9c28-0af91cfdec5d" width="500">
+</div>
+
+El montaje consiste en el robot EV3, la cinta métrica y una pared. 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/fa8dcd5c-821f-4785-877c-070e7e753b1a" width="500">
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d01ce5f9-caac-4e1f-999f-5ffce5d967a1" width="500">
+</div>
+
+#### RECORRIDO DE 1 METRO AL 100% DE VELOCIDAD
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/efd0d2b8-1c33-466c-ac83-fb44798f2c98" width="500">
+</div>
+
+#### MEDIDAS DE ÁNGULOS
+<div align="center">
+  <a href="https://youtu.be/eh_VdQ6DnPY">
+    <img src="https://img.youtube.com/vi/eh_VdQ6DnPY/0.jpg" alt="Prueba de video" width="500">
+  </a>
+</div>
 
 Para lograr esto, el script emplea una combinación de comandos Twist enviados al tópico /turtle1/cmd_vel y pausas mediante rospy.sleep para asegurar que la tortuga avance la distancia deseada antes de girar. Además, al inicio del script se hace uso del servicio /clear para borrar la pantalla y del servicio /turtle1/teleport_absolute para posicionar a la tortuga en un punto de inicio determinado.
 
