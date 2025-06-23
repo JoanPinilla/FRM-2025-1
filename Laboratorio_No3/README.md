@@ -154,3 +154,4 @@ En palabras simples, el algoritmo cumple las siguientes condiciones:
 
 **3.3. Video**
 
+[![YouTube Video](https://img.youtube.com/vi/ItjqDdtpoGM/mqdefault.jpg)](https://youtu.be/ItjqDdtpoGM)
