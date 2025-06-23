@@ -147,6 +147,83 @@ En este caso, el algoritmo a usar será el de mano en la pared.
 
 **3.2. Algoritmo de solución**
 Se implementó el algoritmo de mano en la pared con un sensor de toque en la parte frontal del EV3 y un sensor infrarrojo en la parte posterior, apuntando a la derecha del carro.
+El código mostrado a continuación esta destinado a funcionar en un EV3 que tenga el sistema operativo EV3dev, e implementado con python.
+
+```python
+#!/usr/bin/env python3
+from ev3dev2.sensor.lego import InfraredSensor, TouchSensor, GyroSensor
+from ev3dev2.motor import MoveTank, OUTPUT_B, OUTPUT_D
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3
+import time
+
+# Inicializa sensores y motores
+ir = InfraredSensor(INPUT_2)
+touch = TouchSensor(INPUT_1)
+gyro = GyroSensor(INPUT_3)
+tank = MoveTank(OUTPUT_B, OUTPUT_D)  # Motor Izquierdo y Derecho
+gyro.mode = 'GYRO-ANG' #modo del giroscopio (angulo)
+
+# Parametros
+WALL_DISTANCE_THRESHOLD = 30  # cm 
+SPEED = 30  # Velocidad del motor (0-100)
+
+#Función principal
+
+def follow_wall():
+    while True:
+        
+        ir_distance = ir.proximity  # Distancia actual del infrarrojo a la pared 
+        is_touched = touch.is_pressed  # Estado del sensor de toque
+	
+        # Logica si encuentra una pared frontal
+        if is_touched:
+            if ir_distance < WALL_DISTANCE_THRESHOLD: # pared a la derecha?
+                tank.off()
+                gyro.reset()
+                tank.on(-SPEED, SPEED) #Giro izquierda
+            
+            	# Este ciclo espera hasta que el vehiculo gire hasta la posición deseada (90°)
+                while abs(gyro.angle) < 79: #° valor modificado para obtener un valor cercano al angulo deseado
+                    time.sleep(0.001)
+        	
+                tank.off()
+            else:
+                tank.off()
+                gyro.reset()
+                tank.on(SPEED, -SPEED) #Giro Derecha
+            
+                while abs(gyro.angle) < 79:
+                    time.sleep(0.001)
+        	
+                tank.on_for_degrees(SPEED, SPEED,730)
+                tank.off()
+        
+        # Pared a la derecha → Movimiento frontal                       
+        elif ir_distance < WALL_DISTANCE_THRESHOLD:
+            tank.on(SPEED, SPEED)
+            
+        # No Pared a la derecha → Movimiento en un cuadrado, intentando encontrar la pared
+        else:
+            gyro.reset()
+            tank.on(SPEED, -SPEED)
+            
+            while abs(gyro.angle) < 79:
+                time.sleep(0.001)
+            
+            tank.on_for_degrees(SPEED, SPEED,730)
+
+        time.sleep(0.1)  # Pequeño delay
+        
+#main
+
+if __name__ == '__main__':
+    try:
+        follow_wall()
+    except KeyboardInterrupt:
+        tank.off()
+        print("Program stopped.")
+```
+
 En palabras simples, el algoritmo cumple las siguientes condiciones:
 * Cuando se activa el sensor de toque y se detecta pared a la derecha con el sensor infrarrojo, el carro gira a la izquierda.
 * Cuando se activa el sensor de toque y no se detecta pared a la derecha con el sensor infrarrojo, el carro gira a la derecha.
