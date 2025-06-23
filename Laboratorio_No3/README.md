@@ -141,8 +141,16 @@ Aunque la misión se desarrolló de manera satisfactoria, se tuvieron varios pro
 # 3. Misión 2 
 
 **3.1. Descripción**
+_Utilizar uno de los algoritmos MAZE para ir desde la entrada P1 hasta la salida P2 del laberinto._
 
+En este caso, el algoritmo a usar será el de mano en la pared.
 
 **3.2. Algoritmo de solución**
+Se implementó el algoritmo de mano en la pared con un sensor de toque en la parte frontal del EV3 y un sensor infrarrojo en la parte posterior, apuntando a la derecha del carro.
+En palabras simples, el algoritmo cumple las siguientes condiciones:
+* Cuando se activa el sensor de toque y se detecta pared a la derecha con el sensor infrarrojo, el carro gira a la izquierda.
+* Cuando se activa el sensor de toque y no se detecta pared a la derecha con el sensor infrarrojo, el carro gira a la derecha.
+* Cuando no se detecta pared después de cierto tiempo, el carro gira comienza a hacer una búsqueda, esta consiste en hacer una trayectoria cuadrada hasta encontrar nuevamente una pared.
 
 **3.3. Video**
+
