@@ -216,6 +216,32 @@ Error relativo medio: 3.00%
 ![comp](https://raw.githubusercontent.com/JoanPinilla/FRM-2025-1/main/Laboratorio%20No.%202/imagenes/comp.svg)
 
 ### Sensores Lego
+## ROS
+
+### Uso de ROS
+
+Durante el desarrollo del laboratorio se implementaron y ejecutaron diversos scripts en Python con el objetivo de familiarizarnos con el uso de ROS desde este lenguaje. En primer lugar, el script pysubpose.py se encarga de suscribirse al tópico /turtle1/pose para recibir continuamente la posición y orientación actual de la tortuga. Para lograr esto, se utiliza la función rospy.Subscriber, que permite recibir mensajes del tipo Pose. Estos mensajes son impresos en la consola a medida que llegan. El nodo se inicializa mediante rospy.init_node, y se mantiene activo mediante rospy.spin, que garantiza que el programa no termine hasta que se detenga manualmente.
+
+Por otro lado, el script pypubvel.py tiene la función opuesta: en lugar de suscribirse, publica mensajes en el tópico /turtle1/cmd_vel, lo que permite controlar directamente la velocidad lineal y angular de la tortuga. En este caso, se publica un mensaje del tipo Twist con componentes aleatorias, generadas mediante el módulo random. Esto hace que la tortuga se mueva de manera errática dentro del entorno. Para controlar la frecuencia de publicación se emplea rospy.Rate, estableciendo una tasa de 1 Hz.
+
+Con el fin de determinar los límites del espacio de simulación de Turtlesim, se emplearon los programas turtle_teleop_key y pysubpose.py. Al mover manualmente la tortuga hacia los bordes de la pantalla y observar los valores de posición reportados, se determinó que las coordenadas del plano varían aproximadamente entre 0 y 11 tanto para la posición en X como en Y. 
+
+**Uso de Servicios en Python**
+
+ROS permite la utilización de servicios, los cuales proporcionan una forma de ejecutar tareas bajo demanda mediante la comunicación sincrónica entre nodos. En Python, los servicios pueden utilizarse mediante rospy.ServiceProxy, que actúa como un cliente para un servicio determinado. Antes de utilizarlo, es necesario asegurarse de que el servicio esté disponible utilizando rospy.wait_for_service.
+
+Por ejemplo, para limpiar la pantalla de Turtlesim se puede utilizar el servicio clear, como se muestra a continuación:
+
+rospy.wait_for_service('clear')
+clear = rospy.ServiceProxy('clear', Empty)
+clear()
+
+Este fragmento de código espera a que el servicio esté disponible, lo conecta mediante un proxy y finalmente lo ejecuta. Esta mecánica se repite en muchos servicios disponibles en ROS, incluyendo spawn, kill, teleport_absolute, entre otros.
+
+**Ejecución y Análisis del Script pycuadrado.py**
+
+El script pycuadrado.py fue proporcionado como ejemplo para demostrar cómo se pueden utilizar servicios y comandos de velocidad para lograr que la tortuga dibuje una figura específica. En este caso, el programa está diseñado para que turtle1 dibuje un cuadrado en la pantalla.
+
 #### RECORRIDO DE 1 METRO AL 30% DE VELOCIDAD
 El montaje de este experimento donde se quiere comprobar la incertidumbre de medida en los sensores y actuadores utilizados en los kits LEGO EV3 se puede ver en la siguiente figura:
 
@@ -246,9 +272,56 @@ El montaje consiste en el robot EV3, la cinta métrica y una pared.
   </a>
 </div>
 
-## ROS
+Para lograr esto, el script emplea una combinación de comandos Twist enviados al tópico /turtle1/cmd_vel y pausas mediante rospy.sleep para asegurar que la tortuga avance la distancia deseada antes de girar. Además, al inicio del script se hace uso del servicio /clear para borrar la pantalla y del servicio /turtle1/teleport_absolute para posicionar a la tortuga en un punto de inicio determinado.
 
-### Uso de ROS
+Este ejemplo fue fundamental para comprender la estructura de un programa que combina servicios con publicación de mensajes, y sirvió como base para el desarrollo del script final solicitado por la guía.
 
-### ROS LEGO EV3
-[![Rutina de movimiento](https://img.youtube.com/vi/Z_H9IneXhU8/maxresdefault.jpg)](https://youtu.be/Z_H9IneXhU8)
+**Creación de una Segunda Tortuga**
+
+Para añadir una segunda tortuga al entorno simulado, se utilizó el servicio /spawn. Este servicio permite crear una nueva instancia de tortuga en una posición y orientación dadas. En la terminal, se ejecutó el siguiente comando:
+
+rosservice call /spawn 2.0 2.0 0.0 "turtle2"
+
+Esto crea una nueva tortuga llamada turtle2 en las coordenadas (2.0, 2.0) con una orientación de 0 radianes. Posteriormente, se puede interactuar con esta tortuga de forma independiente utilizando los tópicos /turtle2/cmd_vel, /turtle2/pose, entre otros.
+
+**Desarrollo del Script Final draw_shapes.py**
+
+El objetivo final fue desarrollar un script en Python, draw_shapes.py, que permita a dos tortugas (turtle1 y turtle2) dibujar secuencialmente un triángulo equilátero y un cuadrado. El comportamiento del programa se estructuró en dos etapas principales. En la primera etapa, turtle1 dibuja ambas figuras utilizando una combinación de comandos Twist para moverse hacia adelante y rotar, junto con pausas para sincronizar los movimientos. Una vez completada esta etapa, se procede a crear a turtle2 mediante el servicio spawn. Posteriormente, se repite el mismo procedimiento de dibujo con esta nueva tortuga.
+
+Para modularizar el código y facilitar su lectura, se implementaron funciones independientes para el dibujo de cada figura. Esto permitió reutilizar el código tanto para la primera como para la segunda tortuga. Las velocidades lineales y angulares fueron  ajustadas para mantener las proporciones de las figuras dentro de los límites del entorno de simulación.
+
+Con el fin de automatizar el proceso de ejecución del nodo de simulación (turtlesim_node) y del script draw_shapes.py, se implementó un archivo de lanzamiento denominado draw_shapes.launch. Este archivo contiene dos nodos: uno para iniciar la simulación y otro para ejecutar el script de dibujo.
+
+El contenido del archivo es el siguiente:
+
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
+    <node pkg="laboratorio_2" type="draw_shapes.py" name="draw_shapes" output="screen"/>
+</launch>
+
+Este archivo puede ejecutarse mediante el comando:
+
+roslaunch laboratorio_2 draw_shapes.launch
+
+Al hacerlo, se lanza simultáneamente el entorno gráfico de Turtlesim y el script que comanda a las tortugas para dibujar las figuras requeridas. Esta automatización permite simplificar la puesta en marcha del sistema y asegura que todas las dependencias necesarias estén disponibles en el momento de la ejecución.
+
+### ROS Kobuki
+
+En esta sección se buscó desarrollar un programa que permite al usuario operar el robot Kobuki de forma remota usando el teclado, mientras el sistema supervisa continuamente el sensor de acantilado. Si se detecta una caída potencial (borde de mesa, escalón, etc.), el robot reproduce un sonido de alerta (Para este caso, decidimos usar el sonido de Error del Kobuki). Esta funcionalidad debía integrarse sin afectar la capacidad de controlar el robot mediante teleoperación por teclado. Se buscó una solución funcional y simple que no implicara la creación de nuevos nodos, archivos launch, ni modificaciones adicionales a la configuración base del sistema.
+
+Para cumplir el objetivo planteado, se decidió modificar directamente el archivo fuente keyop_core.cpp del paquete kobuki_keyop, el cual ya implementa la funcionalidad de teleoperación mediante teclado. Esta elección se tomó para evitar la creación de nuevos nodos, archivos .launch o entradas adicionales en el CMakeLists.txt y el package.xml, manteniendo así la simplicidad del sistema.
+
+Dentro del archivo keyop_core.cpp, se implementó una nueva función cliffEventCallback, la cual se suscribe al tópico /mobile_base/events/cliff. Este tópico es publicado por el nodo base de Kobuki (kobuki_node) y emite mensajes del tipo kobuki_msgs/CliffEvent cuando se detecta un evento asociado al sensor de acantilado. Al detectar un evento con estado CLIFF, la función reproduce uno de los sonidos integrados del robot utilizando el tópico /mobile_base/commands/sound.
+
+
+https://github.com/user-attachments/assets/02837dc4-d0a3-4f1b-a31c-32c4e30120ed
+
+
+Para ello, se añadió un publisher adicional en el mismo nodo keyop_core para publicar mensajes del tipo kobuki_msgs/Sound. La publicación del sonido se realiza utilizando uno de los valores predefinidos por el mensaje Sound, como por ejemplo kobuki_msgs::Sound::ERROR, lo cual hace que el robot emita un sonido interno de advertencia sin necesidad de usar archivos de audio externos ni reproducirlos desde el computador.
+
+Estas modificaciones fueron realizadas directamente en la siguiente ruta del espacio de trabajo:
+kobuki/kobuki_keyop/src/keyop_core.cpp
+Además, se incluyó la suscripción en el método init() del mismo archivo, y se declaró el nuevo publisher sound_publisher_ como atributo de la clase KeyOpCore. No se realizaron modificaciones adicionales en los archivos CMakeLists.txt ni package.xml, dado que las dependencias requeridas ya estaban incluidas en el paquete original.
+
+￼
+
