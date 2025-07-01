@@ -40,7 +40,7 @@ Las dimensiones aproximadas del robot Pioneer P3DX son:
 
 Se generó un mapa con 6 obstáculos circulares mediante el script `arena2025.m`, modificando el parámetro de escala `k`.
 
-![Figura 1 - Mapa de obstáculos](figuras/figura1_mapa_obstaculos.png)
+![Figura 1 - Mapa de obstáculos](mapa_obstaculos.jpg)
 
 ### 2.3 Campo repulsivo sigmoidal
 
@@ -85,7 +85,7 @@ El robot parte del extremo inferior izquierdo del entorno y se dirige a la meta 
 
 La figura 2 muestra la trayectoria del robot para cada orientación, superpuesta al mapa con obstáculos.
 
-![Figura 2 - Trayectorias](figuras/figura3_trayectorias.png)
+![Figura 2 - Trayectorias](trayectorias.jpg)
 
 ---
 
@@ -93,7 +93,7 @@ La figura 2 muestra la trayectoria del robot para cada orientación, superpuesta
 
 La figura 3 muestra el campo vectorial del gradiente del campo potencial total, indicando la dirección de movimiento esperada en cada punto.
 
-![Figura 3 - Gradiente del campo](figuras/figura4_gradiente.png)
+![Figura 3 - Gradiente del campo](gradiente.jpg)
 
 ---
 
@@ -101,7 +101,7 @@ La figura 3 muestra el campo vectorial del gradiente del campo potencial total, 
 
 Se incluye una figura adicional (Figura 4) que representa el campo potencial total en forma de superficie 3D para visualizar adecuadamente el campo:
 
-![Figura 4 - Superficie del potencial](figuras/figura5_potencial_total.png)
+![Figura 4 - Superficie del potencial](potencial_total.jpg)
 
 ```matlab
 figure(5);
