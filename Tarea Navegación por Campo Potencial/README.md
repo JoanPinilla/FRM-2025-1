@@ -120,7 +120,7 @@ En esta figura también se pueden ver las coordenadas y el tamaño del cilindro 
 
 ![Medidas](<Screenshot from 2025-07-01 15-38-24.png>)
 
-##Conclusiones
+## Conclusiones
 
 - El modelo cinemático diferencial del robot fue implementado con éxito.
 - Se diseñó un entorno escalado al tamaño real del robot usando `arena2025.m`.
