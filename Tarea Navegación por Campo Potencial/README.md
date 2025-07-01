@@ -102,11 +102,11 @@ shading interp; colormap jet; view(45, 45);
 ## 6. Simulación en CoppeliaSim
 A continuación se puede ver el escenario construido para la simulación:
 
-![Figura 5 - Simulación](<Screenshot from 2025-07-01 13-46-30.png>)
+![Figura 5 - Simulación](<FIGURA 5.png>)
 
 En esta figura también se pueden ver las coordenadas y el tamaño del cilindro del centro:
 
-![Medidas](<Screenshot from 2025-07-01 15-38-24.png>)
+![Medidas](<FIGURA 5A.png>)
 
 ## Conclusiones
 
