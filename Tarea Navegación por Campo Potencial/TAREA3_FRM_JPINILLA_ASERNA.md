@@ -3,6 +3,8 @@
 * Andrés Serna
 * Joan Pinilla
 
+[Repositorio](https://github.com/JoanPinilla/FRM-2025-1/tree/main/Tarea%20Navegaci%C3%B3n%20por%20Campo%20Potencial)
+
 ## Modelo del robot
 Crear el modelo cinemático del robot en MATLAB. El robot Pioneer P3DX es un robot de tipo diferencial cuya cinemática se describe mediante el siguiente sistema de ecuaciones:
 
@@ -107,10 +109,16 @@ surf(X, Y, U);
 title('Campo Potencial Total');
 xlabel('x'); ylabel('y'); zlabel('U(x,y)');
 shading interp; colormap jet; view(45, 45);
+```
 
 # 6. Simulación en CoppeliaSim
+A continuación se puede ver el escenario construido para la simulación:
 
-# 7. Simulación en CoppeliaSim
+![Figura 5 - Simulación](<Screenshot from 2025-07-01 13-46-30.png>)
+
+En esta figura también se pueden ver las coordenadas y el tamaño del cilindro del centro:
+
+![Medidas](<Screenshot from 2025-07-01 15-38-24.png>)
 
 # Conclusiones
 
