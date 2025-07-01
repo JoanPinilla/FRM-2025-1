@@ -8,13 +8,9 @@
 ## Modelo del robot
 Crear el modelo cinemático del robot en MATLAB. El robot Pioneer P3DX es un robot de tipo diferencial cuya cinemática se describe mediante el siguiente sistema de ecuaciones:
 
-\[
-\begin{aligned}
-\dot{x} &= v \cdot \cos(\theta) \\\\
-\dot{y} &= v \cdot \sin(\theta) \\\\
-\dot{\theta} &= \omega
-\end{aligned}
-\]
+dx/dt = v * cos(θ)  
+dy/dt = v * sin(θ)  
+dθ/dt = ω
 
 Donde:
 𝑣 es la velocidad lineal, 𝜔 es la velocidad angular y θ es el ángulo de orientación del robot respecto al eje 𝑥.
@@ -28,13 +24,9 @@ Las dimensiones aproximadas del robot Pioneer P3DX son:
 - Ancho: 0.381 m  
 - Largo: 0.455 m  
 - Radio de inclusión:  
-  \[
-  R = \frac{\sqrt{(0.381)^2 + (0.455)^2}}{2} \approx 0.296 \text{ m}
-  \]
+  R = sqrt((0.381)^2 + (0.455)^2) / 2 ≈ 0.296 m
 - Factor de escala para el entorno:  
-  \[
-  k = 10 \cdot R = 2.96
-  \]
+  k = 10 * R = 2.96
 
 ### 2.2. Mapa con obstáculos
 
@@ -46,13 +38,9 @@ Se generó un mapa con 6 obstáculos circulares mediante el script `arena2025.m`
 
 En lugar del campo parabólico, se implementó un campo repulsivo suave usando la función sigmoidal:
 
-\[
-f(d) = \frac{1}{1 + e^{-a(d - d_0)}}
-\]
+f(d) = 1 / (1 + exp(-a * (d - d₀)))
 
-\[
-U_{rep} = k_{rep} \cdot (1 - f(d))
-\]
+U_rep = k_rep * (1 - f(d))
 
 Esto permite un campo de fuerza continua y sin discontinuidades alrededor de los obstáculos. Al mapa generado le asignamos el nombre: 
 
