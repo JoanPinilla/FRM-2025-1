@@ -13,11 +13,9 @@ Este proyecto tiene como objetivo la implementación de un sistema colaborativo 
 El Roomba será responsable de liderar el trayecto, emitiendo señales ultrasónicas de forma continua. El LEGO EV3, equipado con un sensor ultrasónico, interpretará esta señal como referencia para ajustar su desplazamiento y mantener el seguimiento del Roomba.
 
 ## Materiales
-* Robot Create 2 (Roomba)
+* iRobot Create 2 (Roomba)
 * LEGO Mindstorms EV3
-* NVIDIA Jetson Nano (ejecutando ROS 2, control del Roomba y procesamiento de
-cámara)
-* Cámara Intel RealSense D435 (integración futura o visualización experimental)
+* NVIDIA Jetson Nano (ROS 2, control del Roomba)
 * Sensor ultrasónico (en el EV3)
 * Emisor ultrasónico activo (instalado en el Roomba)
 
