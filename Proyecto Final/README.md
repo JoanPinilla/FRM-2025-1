@@ -16,8 +16,7 @@ El Roomba será responsable de liderar el trayecto, emitiendo señales ultrasón
 * iRobot Create 2 (Roomba)
 * LEGO Mindstorms EV3
 * NVIDIA Jetson Nano (ROS 2, control del Roomba)
-* Sensor ultrasónico (en el EV3)
-* Emisor ultrasónico activo (instalado en el Roomba)
+* Sensor ultrasónico (en el EV3 y en el Roomba)
 
 ## Herramientas de softaware utilizadas
 
