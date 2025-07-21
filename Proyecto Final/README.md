@@ -32,20 +32,20 @@ Lógica de navegación
 
 Seguir señal: 
 
-   Cuando detecta la señal objetivo (con el ultrasónico), avanza recto.
+   Cuando detecta la señal objetivo (con el ultrasónido), avanza recto.
 
 Evitar obstáculos: 
 
-   Si encuentra un obstáculo frontal:
-   Retrocede un poco
-   Gira aproximadamente 80 grados
-   Intenta rodear el obstáculo manteniendo una distancia óptima de la pared lateral
+   Si se encuentra un obstáculo frontal,
+   retrocede un poco
+   y gira aproximadamente 90 grados,
+   a continucación intenta rodear el obstáculo manteniendo una distancia óptima de la pared lateral
 
 Búsqueda aleatoria: 
    
-   Cuando no detecta la señal, alterna entre:
-   Avanzar recto por un tiempo
-   Girar en su lugar por un tiempo
+   Cuando no detecta la señal, alterna entre
+   avanzar recto por un tiempo dado
+   y girar en su lugar por un tiempo dado
 
 ```python
 #!/usr/bin/env python3
