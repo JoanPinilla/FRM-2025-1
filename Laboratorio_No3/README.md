@@ -163,7 +163,7 @@ Aunque la misión se desarrolló de manera satisfactoria, se tuvieron varios pro
 **2.3. Video**
 
 
-[![Demo Video](Laboratorio_No3/mision1/thumbnail.png)](Laboratorio_No3/mision1/video_mision1.mp4)
+https://youtu.be/XOvdp3vnZ9c
 
 # 3. Misión 2 
 
