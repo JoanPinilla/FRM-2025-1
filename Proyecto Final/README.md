@@ -14,244 +14,112 @@ El Roomba será responsable de liderar el trayecto, emitiendo señales ultrasón
 
 ## Materiales
 * iRobot Create 2 (Roomba)
+<div align="center">
+  <img height="450" alt="Roomba" src="https://github.com/user-attachments/assets/b5befe65-2fa0-4ec7-9279-18f83ea317a2" />
+</div>
+
+* NVIDIA Jetson Nano usada para ROS2 y control del Roomba
 * LEGO Mindstorms EV3
-* NVIDIA Jetson Nano (ROS 2, control del Roomba)
-* Sensor ultrasónico (en el EV3 y en el Roomba)
+<div align="center">
+  <img height="450" alt="EV3" src="https://github.com/user-attachments/assets/b663d2bf-210f-4c15-a182-3d9f400be014" />
+</div>
+
+Con los siguientes sensores:
+   * Sensor ultrasónico
+   * Gyro
+   * Sensores infrarrojos
 
 ## Herramientas de softaware utilizadas
 
-## Resultados obtenidos con soporte de imagenes y videos
+### ROS2
+La integración del Roomba con el entorno ROS 2 se realizó mediante el uso del framework _ros2_control_, que permite una interfaz estandarizada y extensible para el control de hardware robótico. Esta arquitectura facilita el desarrollo modular y el acoplamiento con algoritmos de control.
 
-## Dificultades
+El iRobot Create 2 se conecta la Jetson Nano por comunicación serial. A través de esta conexión, es posible enviar comandos de velocidad y recibir datos de sensores internos del robot, como los encoders.
+
+<div align="center">
+   <img height="500" alt="comunicaciones" src="https://github.com/user-attachments/assets/8d95c319-f2bc-4b29-b1a6-10a9e69edcea" />  
+</div>
+
+El control del Roomba se estructura en tres capas principales:
+
+<div align="center">
+   <img height="300" alt="control_roomba" src="https://github.com/user-attachments/assets/01d2f281-bdd6-4183-bd2a-7e0bed2db530" />
+</div>
+
+Interfaz de hardware (RoombaSystemInterface): Implementa la comunicación serial con el robot y traduce los comandos de velocidad lineal y angular recibidos desde ROS 2 al protocolo nativo del Roomba. También publica la información sensorial disponible.
+
+Controladores (controller_manager): Se emplearon controladores estándar del paquete _ros2_control_, particularmente _diff_cont_ para el control teleoperado.
+
+Planificación y emisión de trayectorias: El Roomba lidera el movimiento de manera teleoperada. El nodo _robot_starte_publisher_ publica constantemente los estados de los encoders y también los recibe de _joint_broad_
+
+<div align="center">
+   <img height="250" alt="ros" src="https://github.com/user-attachments/assets/252acc4d-962f-42a9-af46-25055a174b8e" />
+</div>
+
+### GAZEBO
+Con este software de simulación se pudo implementar el modelo cineático del robot para simular su movimiento correctamente. Además, se realizó el mapeo de una zona con un LIDAR. El mapeo de este espacio también se puede observar en la simulación.
+
+<div align="center">
+<img width="968" height="580" alt="mapeo" src="https://github.com/user-attachments/assets/22e1c67d-362b-4ed8-95cd-8eef81bd5b11" />
+</div>
+
+<div align="center">
+<img width="408" height="337" alt="gazebo" src="https://github.com/user-attachments/assets/11e359e0-5b0a-4dc6-bfc9-a057d86d3b78" />
+</div>
+
+
+## Resultados obtenidos con soporte de imagenes y videos
+<div align="center">
+  <a href="https://youtu.be/fB5QnzeEPsw">
+    <img src="https://img.youtube.com/vi/fB5QnzeEPsw/maxresdefault.jpg" alt="Video Tutorial - Haz clic para ver" style="max-width: 100%; border-radius: 8px;" width="720">
+  </a>
+  <br>
+  <sub>En este video se muestra el seguimiento puro del ultrasonido</sub>
+</div>
+
+## Lecciones aprendidas
 
 ## Scripts utilizados o paquetes creados
 
-Codigo empleado en el EV3, implementado en python para el sistema EV3DEV2.
+Codigo empleado en el EV3, implementado en python para el sistema EV3DEV2 se encuentra [acá](FRM-2025-1/Proyecto_Final/SEGUIDOR_EV3.py).
+Las funciones principales de este código son:
 
-Lógica de navegación
+<div align="center">
+  <img width="770" height="621" alt="seguimiento" src="https://github.com/user-attachments/assets/87ac395c-18f2-49ab-9040-ad25dc2df1c4" />
+</div>
 
-Seguir señal: 
+### Seguir señal: 
 
    Cuando detecta la señal objetivo (con el ultrasónido), avanza recto.
 
-Evitar obstáculos: 
+### Evitar obstáculos: 
 
    Si se encuentra un obstáculo frontal,
    retrocede un poco
    y gira aproximadamente 90 grados,
    a continucación intenta rodear el obstáculo manteniendo una distancia óptima de la pared lateral
 
-Búsqueda aleatoria: 
+### Búsqueda aleatoria: 
    
    Cuando no detecta la señal, alterna entre
    avanzar recto por un tiempo dado
    y girar en su lugar por un tiempo dado
 
-```python
-#!/usr/bin/env python3
-from ev3dev2.motor import OUTPUT_B, OUTPUT_C, MoveTank
-from ev3dev2.sensor.lego import InfraredSensor, GyroSensor, UltrasonicSensor
-from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
-from time import sleep, time as now
-
-# === Motores ===
-tank = MoveTank(OUTPUT_B, OUTPUT_C)
-
-# === Sensores ===
-ir_front = InfraredSensor(INPUT_3)
-ir_side  = InfraredSensor(INPUT_1)
-gyro     = GyroSensor(INPUT_2)
-usl      = UltrasonicSensor(INPUT_4)
-usl.mode = 'US-LISTEN'
-gyro.mode = 'GYRO-ANG'
-
-# === Constantes ===
-OBSTACLE_THRESHOLD = 17    # distancia frontal
-WALL_TOO_CLOSE = 15        # pared lateral demasiado cercana
-WALL_OPTIMAL = 20          # zona deseada
-WALL_TOO_FAR = 25          # demasiado lejos de la pared
-ROTATION_SPEED = 45
-FORWARD_SPEED = 70
-GIRO_TIMEOUT = 3.5         # tiempo máx de giro en segundos
-EVASION_TIMEOUT = 5       # tiempo máx de evasión
-M_LINE_TOLERANCE = 5       # tolerancia de ángulo para detectar M-line
-
-
-# === Variables globales ===
-initial_angle = 0
-maxahead = 30 #tiempo que se mueve hacia delante en el modo busqueda
-maxturn = 10  #tiempo que se gira en el modo busqueda
-ahead = 0
-turn = maxturn
-
-# === Funciones auxiliares ===
-
-def other_sensor_present():
-    return usl.value()
-
-def rotar_derecha(grados):
-    print("Girando", grados, "grados")
-    gyro.reset()
-    sleep(0.2)  # estabilizar
-    tank.on(30, -30)
-    start_time = now()
-    while abs(gyro.angle) < grados:
-        if now() - start_time > GIRO_TIMEOUT:
-            print("Giro excede el tiempo, abortando")
-            break
-        sleep(0.01)
-    tank.off()
-
-def alejar_de_obstaculo_lateral():
-    print("Pared lateral muy cercana. Ajustando ruta...")
-    while ir_side.proximity < WALL_TOO_CLOSE:
-        tank.on(20, 15)
-        sleep(0.05)
-    tank.off()
-    print("Distancia lateral segura restablecida.")
-
-def seguir_signal():
-    print("Siguiendo")
-    tank.on(FORWARD_SPEED, FORWARD_SPEED)
-
-def buscar_signal():
-    print("Buscando...")
-    global ahead, turn
-    if ahead < maxahead:          #modo busqueda moverse adelante
-            
-            tank.on(FORWARD_SPEED, FORWARD_SPEED)
-            ahead = ahead + 1
-            print("frente",ahead)
-            
-            if ahead == maxahead:      #cambia a modo giro
-                turn = 0
-            
-    elif turn < maxturn:           #modo busqueda girar
-            
-            tank.on(-ROTATION_SPEED, ROTATION_SPEED)
-            turn = turn +1
-            print("giro",turn)
-            
-            if turn == maxturn:        #cambia a modo adelante
-                ahead = 0
-     
-    sleep(0.05)
-        
-
-def retroceder_suavemente(tiempo=0.5, velocidad=-20):
-    print("Retrocediendo")
-    tank.on(velocidad, velocidad)
-    sleep(tiempo)
-    tank.off()
-    print("Retroceso completado.")
-
-def esquivar_obstaculo():
-    print("Iniciando evasion...")
-    retroceder_suavemente()
-    rotar_derecha(80)  # ángulo más suave
-    start_time = now()
-    evasión_completada = False
-
-    while True:
-        front = ir_front.proximity
-        side = ir_side.proximity
-
-        if front < OBSTACLE_THRESHOLD:
-            print("Obstaculo detectado de nuevo. Ajustando direccion")
-            retroceder_suavemente()
-            rotar_derecha(75)
-            start_time = now()
-
-        elif side < WALL_TOO_CLOSE:
-            print("Muy cerca de la pared lateral. Girando a la derecha.")
-            tank.on(20, 15)
-
-        elif side > WALL_TOO_FAR:
-            if front > OBSTACLE_THRESHOLD + 10:
-                print("Demasiado lejos de la pared y sin obstaculo al frente. Buscando pared...")
-                tank.on(15, 20)  # giro fuerte a la izquierda
-            else:
-                print("Demasiado lejos, pero posible obstaculo al frente. Ajustando suavemente.")
-                #retroceder_suavemente()
-                tank.on(20, 15)
-        else:
-            print("Distancia lateral optima. Avanzando recto.")
-            tank.on(FORWARD_SPEED, FORWARD_SPEED)
-
-        current_angle = gyro.angle
-        if abs(current_angle - initial_angle) < M_LINE_TOLERANCE and other_sensor_present():
-            print("Retorno a la M-line con signall presente.")
-            evasión_completada = True
-            break
-
-        if now() - start_time > EVASION_TIMEOUT:
-            print("Evasion muy larga. Abortando.")
-            break
-
-        sleep(0.05)
-
-    tank.off()
-    if evasión_completada:
-        seguir_signal()
-    else:
-        buscar_signal()
-
-# === Función principal ===
-
-def main():
-    print("Iniciando programa Bug 2 mejorado...")
-    gyro.reset()
-    sleep(0.2)
-    global initial_angle
-    initial_angle = gyro.angle
-    print("Angulo inicial registrado (M-line):", initial_angle)
-
-    while True:
-        print("Frontal:", ir_front.proximity, "| Lateral:", ir_side.proximity, "| Signal:", other_sensor_present())
-
-        if other_sensor_present() and ir_front.proximity < OBSTACLE_THRESHOLD:
-            print("Signal detectada, pero obstaculo frontal bloquea el paso")
-            esquivar_obstaculo()
-
-        elif ir_side.proximity < WALL_TOO_CLOSE:
-            alejar_de_obstaculo_lateral()
-            continue
-
-        elif ir_front.proximity < OBSTACLE_THRESHOLD:
-            print("Obstaculo detectado frontalmente")
-            esquivar_obstaculo()
-
-        elif other_sensor_present():
-            seguir_signal()
-
-        else:
-            buscar_signal()
-
-# === Entrada principal ===
-
-if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        tank.off()
-        print("Programa interrumpido.")
-```
 
 
 ## Autoevalución del equipo y personal
-### Autoevaluación de equipo - 5.0
-Como equipo, nos evaluamos con una calificación de 5.0. Logramos una colaboración muy buena durante todo el desarrollo del proyecto. Hubo buena comunicación, compromiso por parte de todos y una distribución equilibrada de las tareas. Cada integrante asumió un rol claro y aportó desde sus fortalezas. Supimos resolver los problemas técnicos que aparecieron y llegamos a un sistema funcional que cumplió con los objetivos planteados. Además, nos apoyamos mutuamente en las etapas más exigentes y logramos mantener una buena organización y motivación.
+### Autoevaluación de equipo - 4.0
+Logramos una colaboración muy buena durante todo el desarrollo del proyecto. Hubo buena comunicación, compromiso por parte de todos y una distribución equilibrada de las tareas. Cada integrante asumió un rol claro y aportó desde sus fortalezas. Supimos resolver los problemas técnicos que aparecieron y llegamos a un sistema que presenta algunos problemas pero es funcional y cumple de manera aceptable el objetivo planteado.
 
-### Autoevaluación de Eduardo Cuadros - 5.0
-Considero que hice un excelente trabajo dentro del equipo. Me enfoqué especialmente en la parte de hardware y en el funcionamiento del EV3, participando activamente en las pruebas de seguimiento y asegurándome de que la lectura del sensor ultrasónico fuera estable. Me mantuve comprometido durante todas las etapas del proyecto y colaboré de forma constante con mis compañeros.
-
-### Autoevaluación de Andrés Serna - 5.0
+### Autoevaluación de Eduardo Cuadros - 4.5
 Tuve un papel clave en la parte del Roomba, trabajando en la emisión de la señal ultrasónica y en el control de movimiento. Aporté ideas para resolver varios problemas técnicos y siempre estuve disponible para trabajar en equipo. Me siento satisfecho con mi desempeño y el resultado final del sistema.
 
-### Autoevaluación de Nicolás Moreno - 5.0
-Tuve un papel clave en la parte del Roomba, trabajando en la emisión de la señal ultrasónica y en el control de movimiento. Aporté ideas para resolver varios problemas técnicos y siempre estuve disponible para trabajar en equipo. Me siento satisfecho con mi desempeño y el resultado final del sistema.
+### Autoevaluación de Andrés Serna - 4.5
+Hice un excelente trabajo dentro del equipo. Me enfoqué especialmente en la parte de hardware y en el funcionamiento del EV3, participando activamente en las pruebas de seguimiento y asegurándome de que la lectura del sensor ultrasónico fuera estable. Me mantuve comprometido durante todas las etapas del proyecto y colaboré de forma constante con mis compañeros.
 
-### Autoevaluación de Joan Pinilla - 5.0
+
+### Autoevaluación de Nicolás Moreno - 4.5
 Me involucré desde el inicio en el diseño general del sistema, especialmente en cómo lograr la comunicación entre los dos robots. Aporté soluciones en la integración del software y el control de seguimiento, y estuve pendiente de que todo funcionara bien en conjunto. Me sentí muy motivado y comprometido con el proyecto.
 
-## Bibliografia y enlace de recursos utilizados 
+### Autoevaluación de Joan Pinilla - 4.2
+Estuve involucrado tanto en la parte del EV3 como en la parte del Roomba. Aporté mis ideas para el flujo del código de seguimiento y me encargué de hacer la presentación.
