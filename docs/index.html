@@ -1,33 +1,251 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mi producto</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rumba con el Roomba</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --color-enfasis: #C0392B; /* Rojo elegante */
+    }
+
+    .btn-enfasis {
+      background-color: var(--color-enfasis);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-enfasis:hover {
+      background-color: #A93226;
+    }
+
+    .text-enfasis {
+      color: var(--color-enfasis);
+    }
+
+    .navbar-dark .navbar-nav .nav-link.active,
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: var(--color-enfasis);
+    }
+
+.material-card {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.material-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(192, 57, 43, 0.95); /* rojo con transparencia */
+  color: white;
+  padding: 1rem;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 2;
+}
+
+.material-card:hover .material-overlay {
+  bottom: 0;
+}
+
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="mt-5 text-center">¡Bienvenido a mi producto!</h1>
-    <p class="lead text-center">Una solución ficticia pero fabulosa.</p>
 
-    <div class="row mt-4">
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="imagen">
-          <div class="card-body">
-            <h5 class="card-title">Función 1</h5>
-            <p class="card-text">Breve descripción de esta función del producto.</p>
-            <a href="#" class="btn btn-primary">Más info</a>
+  <!-- Header con navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Rumba con el Roomba</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#producto">Nuestro producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#aplicaciones">Aplicaciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#equipo">Nuestro equipo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Hero / Bienvenida -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Imagen a la izquierda -->
+      <div class="col-md-6 mb-4 mb-md-0 text-center">
+        <img src="objetivo.png" alt="Imagen del proyecto" class="img-fluid rounded">
+      </div>
+      <!-- Texto a la derecha -->
+      <div class="col-md-6">
+        <h1 class="text-enfasis">Rumba con el Roomba</h1>
+        <p class="lead">
+          Este proyecto tiene como objetivo la implementación de un sistema colaborativo de locomoción y guiado entre dos plataformas móviles autónomas: un robot iRobot Create 2 (Roomba) y un robot LEGO EV3, mediante comunicación no estructurada basada en señales ultrasónicas.
+        </p>
+        <p>
+          El Roomba será responsable de liderar el trayecto, emitiendo señales ultrasónicas de forma continua. El LEGO EV3, equipado con un sensor ultrasónico, interpretará esta señal como referencia para ajustar su desplazamiento y mantener el seguimiento del Roomba.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Sección: Materiales -->
+<section class="py-5" id="producto">
+  <div class="container">
+    <h2 class="mb-4 text-center text-enfasis">Nuestro producto</h2>
+    <div class="row">
+      <!-- Roomba -->
+      <div class="col-md-6 text-center mb-4">
+        <div class="material-card position-relative overflow-hidden">
+          <img src="Roomba.png" alt="Roomba" class="img-fluid rounded">
+          <div class="material-overlay">
+            <h5 class="mt-3 text-enfasis">Roomba + Jetson Nano</h5>
+            <p>Usado con NVIDIA Jetson Nano para correr ROS2 y controlar el desplazamiento.</p>
           </div>
         </div>
       </div>
-      <!-- Repite para más columnas -->
+      <!-- EV3 -->
+      <div class="col-md-6 text-center mb-4">
+        <div class="material-card position-relative overflow-hidden">
+          <img src="EV3.png" alt="EV3" class="img-fluid rounded">
+          <div class="material-overlay">
+            <h5 class="mt-3 text-enfasis">LEGO Mindstorms EV3</h5>
+            <p>Con los siguientes sensores:<br>
+              - Sensor ultrasónico<br>
+              - Giroscopio (Gyro)<br>
+              - Sensores infrarrojos
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Bootstrap JS (opcional si usas componentes como menús o modales) -->
+
+<!-- Sección: Aplicaciones -->
+<section id="aplicaciones" class="py-5 bg-light">
+  <div class="container">
+    <!-- Título general -->
+    <h2 class="mb-4 text-center text-enfasis">Aplicaciones</h2>
+
+    <!-- Subtítulo: Aplicaciones actuales -->
+    <div class="mb-5">
+      <h4 class="text-center text-enfasis">Aplicaciones actuales</h4>
+      <p class="text-center">
+        Actualmente, el Roomba y el EV3 pueden generar rutinas de navegación colaborativa. Esto es útil para reducir la carga computacional de una de los robots y para simular comportamientos como el de Bug2. Sin embargo, teniendo en cuenta las limitaciones en el rango y la alineación específica que requieren los sensores para funcionar, se plantean nuevas aplicaciones:
+        <!-- Puedes reemplazar este texto cuando tengas la redacción final -->
+      </p>
+    </div>
+
+    <!-- Subsección: Alineación a distancia -->
+    <div class="row align-items-center mb-5">
+      <!-- Texto a la izquierda -->
+      <div class="col-md-6">
+        <h5 class="text-enfasis">Alineación a distancia</h5>
+        <p>
+          El sistema puede utilizarse para mantener alineados dos robots de forma autónoma, útil en tareas de seguimiento,
+          desplazamientos sincronizados o formación en ambientes donde no se dispone de comunicación inalámbrica estructurada.
+        </p>
+      </div>
+      <!-- Imagen a la derecha -->
+      <div class="col-md-6 text-center">
+        <img src="alinear.png" alt="Alineación a distancia" class="img-fluid rounded">
+      </div>
+    </div>
+
+    <!-- Subsección: Juego de disparos con robots -->
+    <div class="row align-items-center">
+      <!-- Imagen a la izquierda -->
+      <div class="col-md-6 text-center mb-4 mb-md-0">
+        <img src="game.png" alt="Juego de disparos" class="img-fluid rounded">
+      </div>
+      <!-- Texto a la derecha -->
+      <div class="col-md-6">
+        <h5 class="text-enfasis">Juego de disparos con robots</h5>
+        <p>
+          Mediante sensores ultrasónicos e infrarrojos, se puede implementar una modalidad de juego entre robots donde uno actúa
+          como perseguidor y otro como objetivo, integrando comportamientos de evasión, persecución y reacción a disparos. El reto de cada jugador sería alinear correctamente su sensor en el modo de emisión contra el sensor en modo escucha del otro jugador.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección: Nuestro equipo -->
+<section id="equipo" class="py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center text-enfasis">Nuestro equipo</h2>
+    <div class="row">
+      <!-- Miembro 1 -->
+      <div class="col-md-3 col-sm-6 mb-4 text-center">
+        <div class="card h-100 border-0">
+          <img src="eduardo.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Miembro 1" style="width: 150px; height: 150px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-enfasis">Eduardo Cuadros</h5>
+            <p class="card-text">Ingeniero Mecatrónico. Tuve un papel clave en la parte del Roomba, trabajando en la emisión de la señal ultrasónica y en el control de movimiento. Aporté ideas para resolver varios problemas técnicos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Miembro 2 -->
+      <div class="col-md-3 col-sm-6 mb-4 text-center">
+        <div class="card h-100 border-0">
+          <img src="andres.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Miembro 2" style="width: 150px; height: 150px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-enfasis">Andrés Serna</h5>
+            <p class="card-text">Ingeniero Mecatrónico. Me enfoqué especialmente en la parte de hardware y en el funcionamiento del EV3, participando activamente en las pruebas de seguimiento y asegurándome de que la lectura del sensor ultrasónico fuera estable..</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Miembro 3 -->
+      <div class="col-md-3 col-sm-6 mb-4 text-center">
+        <div class="card h-100 border-0">
+          <img src="nicolas.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Miembro 3" style="width: 150px; height: 150px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-enfasis">Nicolás Moreno</h5>
+            <p class="card-text">Ingniero Electrónico. Me involucré desde el inicio en el diseño general del sistema, especialmente en cómo lograr la comunicación entre los dos robots. Aporté soluciones en la integración del software y el control de seguimiento, y estuve pendiente de que todo funcionara bien en conjunto.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Miembro 4 -->
+      <div class="col-md-3 col-sm-6 mb-4 text-center">
+        <div class="card h-100 border-0">
+          <img src="joan.JPG" class="card-img-top rounded-circle mx-auto mt-3" alt="Miembro 4" style="width: 150px; height: 150px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-enfasis">Joan Pinilla</h5>
+            <p class="card-text">Ingeniero Mecatrónico. Estuve involucrado tanto en la parte del EV3 como en la parte del Roomba. Aporté mis ideas para el flujo del código de seguimiento y me encargué de hacer la presentación y la página web.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer opcional -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <small>Fundamentos de Robótica Móvil 2025 - I</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
