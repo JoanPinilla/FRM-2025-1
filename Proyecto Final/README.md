@@ -1,5 +1,5 @@
 # PROYECTO FINAL FUNDAMENTOS DE ROBÓTICA MÓVIL
-# RUMBA CON EL RUMBA
+# RUMBA CON EL ROOMBA
 
 ## INTEGRANTES
 * Eduardo Cuadros
@@ -77,8 +77,6 @@ Con este software de simulación se pudo implementar el modelo cineático del ro
   <sub>En este video se muestra el seguimiento puro del ultrasonido</sub>
 </div>
 
-## Lecciones aprendidas
-
 ## Scripts utilizados o paquetes creados
 
 Codigo empleado en el EV3, implementado en python para el sistema EV3DEV2 se encuentra [acá](FRM-2025-1/Proyecto_Final/SEGUIDOR_EV3.py).
@@ -105,21 +103,24 @@ Las funciones principales de este código son:
    avanzar recto por un tiempo dado
    y girar en su lugar por un tiempo dado
 
-
+## Lecciones aprendidas
+* Evaluar mejor la capacidad de los sensores usados para cumplir el objetivo satisfactoriamente.
+* Mejorar la presentación de las ideas de ingeniería.
+* Mejorar las demostraciones.
 
 ## Autoevalución del equipo y personal
 ### Autoevaluación de equipo - 4.0
 Logramos una colaboración muy buena durante todo el desarrollo del proyecto. Hubo buena comunicación, compromiso por parte de todos y una distribución equilibrada de las tareas. Cada integrante asumió un rol claro y aportó desde sus fortalezas. Supimos resolver los problemas técnicos que aparecieron y llegamos a un sistema que presenta algunos problemas pero es funcional y cumple de manera aceptable el objetivo planteado.
 
-### Autoevaluación de Eduardo Cuadros - 4.5
+### Autoevaluación de Eduardo Cuadros - 4.3
 Tuve un papel clave en la parte del Roomba, trabajando en la emisión de la señal ultrasónica y en el control de movimiento. Aporté ideas para resolver varios problemas técnicos y siempre estuve disponible para trabajar en equipo. Me siento satisfecho con mi desempeño y el resultado final del sistema.
 
-### Autoevaluación de Andrés Serna - 4.5
+### Autoevaluación de Andrés Serna - 4.3
 Hice un excelente trabajo dentro del equipo. Me enfoqué especialmente en la parte de hardware y en el funcionamiento del EV3, participando activamente en las pruebas de seguimiento y asegurándome de que la lectura del sensor ultrasónico fuera estable. Me mantuve comprometido durante todas las etapas del proyecto y colaboré de forma constante con mis compañeros.
 
 
-### Autoevaluación de Nicolás Moreno - 4.5
+### Autoevaluación de Nicolás Moreno - 4.3
 Me involucré desde el inicio en el diseño general del sistema, especialmente en cómo lograr la comunicación entre los dos robots. Aporté soluciones en la integración del software y el control de seguimiento, y estuve pendiente de que todo funcionara bien en conjunto. Me sentí muy motivado y comprometido con el proyecto.
 
-### Autoevaluación de Joan Pinilla - 4.2
+### Autoevaluación de Joan Pinilla - 4.0
 Estuve involucrado tanto en la parte del EV3 como en la parte del Roomba. Aporté mis ideas para el flujo del código de seguimiento y me encargué de hacer la presentación.
