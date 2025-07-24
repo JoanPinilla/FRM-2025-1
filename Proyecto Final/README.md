@@ -104,6 +104,10 @@ En la siguiente imágen se puede observar el mapa de costo que interpreta Nav2, 
 
 A continuación se puede ver un video de la implementación de Nav2 para la navegación simulada del robot. En este video se puede ver como el robot esta quieto en un lugar del mapa, realizando constantemente lectura de obstáculos con el Lidar. Luego se le da un objetivo por medio de la interfaz de Rviz, la cual en el video se ve como una flecha verde. Esta flecha verde es posicionada en el lugar y orientación a la que se quiere llevar al robot. Después de señalarle el lugar, después de un par de segundos el robot empieza a moverse esquivando los obstáculos.
 
+### Video
+https://youtu.be/60cwPYG3EeA
+
+
 ## Resultados obtenidos con soporte de imagenes y videos
 <div align="center">
   <a href="https://youtu.be/fB5QnzeEPsw">
