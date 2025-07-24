@@ -56,17 +56,53 @@ Planificación y emisión de trayectorias: El Roomba lidera el movimiento de man
    <img height="250" alt="ros" src="https://github.com/user-attachments/assets/252acc4d-962f-42a9-af46-25055a174b8e" />
 </div>
 
-### GAZEBO
+### Simulación
 Con este software de simulación se pudo implementar el modelo cineático del robot para simular su movimiento correctamente. Además, se realizó el mapeo de una zona con un LIDAR. El mapeo de este espacio también se puede observar en la simulación.
 
+En la siguiente imágen se puede observar el mapeo real del lidar en el robot.
 <div align="center">
 <img width="968" height="580" alt="mapeo" src="https://github.com/user-attachments/assets/22e1c67d-362b-4ed8-95cd-8eef81bd5b11" />
 </div>
 
+### Mapeo y localización
+
+Para la creación del mapa se utilizó el paquete de ROS2 llamado SLAM-Toolbox (Simultaneous Localization and Mapping). Esta herramienta es ampliamente utiilzada para la creación de mapas y la localización de un robot móvil en un entorno desconocido. Este proceso es realizado mediante el uso de sensores como LIDAR o cámaras. Este paquete permite:
+- Generar un mapa 2D del entorno en tiempo real.
+- Usar el mapa posteriormente para tareas de localización.
+
+En las siguientes imágenes se puede observar la continua creación de un mapa en un entorno.Esta visualización de las acciones del robot se hace mediante Rviz2.
+
 <div align="center">
-<img width="408" height="337" alt="gazebo" src="https://github.com/user-attachments/assets/11e359e0-5b0a-4dc6-bfc9-a057d86d3b78" />
+<img width="898" height="527" alt="map1" src="https://github.com/user-attachments/assets/a6d36e86-24c1-4f1b-86a8-da8deb5e4d3c" />
 </div>
 
+<div align="center">
+<img width="985" height="675" alt="map2" src="https://github.com/user-attachments/assets/b5e7c9e2-aea0-4c07-a28b-d3faada88227" />
+</div>
+
+Se puede ver en la siguiente imágen como, en la simulación de gazebo, estan los objetos reales mientras que en Rviz solo es la visualización que el robot tiene de los objetos con el Lidar. Para esta simulación se utilizaron varios obstáculos en forma de cono con diferentes tamaños.
+
+<div align="center">
+<img width="598" height="446" alt="gazebo_sim" src="https://github.com/user-attachments/assets/624ac092-0ed6-4691-a5a9-af41d7f567e4" />
+</div>
+
+### Navegación
+Una vez se tienen los mapas del entorno creados se usa otra herramienta de ROS, llamada Nav2, para la navegación en dichos mapas de forma autónoma. Nav2 es el sistema de navegación de ROS2 y proporciona al robot la  capacidad de planificar rutas desde un punto A a un punto B, evitar obstáculos en tiempo real y seguir trayectorias de forma autónoma.
+
+La interacción entre SLAM y Nav2 se realiza mediante el uso del tópico `/map`. En este tópico, SLAM publica los mapas y la localización del robot y Nav2, suscrito a dicho tópico, puede realizar la navegación. El flujo del proceso general es el siguiente:
+- El robot explora el entorno y crea un mapa con SLAM Toolbox.
+-  Una vez el mapa esta completo, se puede guardar para su posterior uso.
+-  Nav2 se lanza con ese mapa cargado.
+-  Se le indica al robot una meta de navegación por Rviz o código.
+-  Nav2 genera una ruta, y su controlador local guía al robot hacia la meta, evitando obstáculos dinámicos.
+
+En la siguiente imágen se puede observar el mapa de costo que interpreta Nav2, en el cual se realiza un inflado de los objetos para evitar colisiones.
+
+<div align="center">
+<img width="850" height="768" alt="cost_map" src="https://github.com/user-attachments/assets/b2017f78-8772-4539-9c51-4f4d9c51b4af" />
+</div>
+
+A continuación se puede ver un video de la implementación de Nav2 para la navegación simulada del robot. En este video se puede ver como el robot esta quieto en un lugar del mapa, realizando constantemente lectura de obstáculos con el Lidar. Luego se le da un objetivo por medio de la interfaz de Rviz, la cual en el video se ve como una flecha verde. Esta flecha verde es posicionada en el lugar y orientación a la que se quiere llevar al robot. Después de señalarle el lugar, después de un par de segundos el robot empieza a moverse esquivando los obstáculos.
 
 ## Resultados obtenidos con soporte de imagenes y videos
 <div align="center">
