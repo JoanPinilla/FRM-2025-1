@@ -148,8 +148,8 @@ Las funciones principales de este código son:
 ### Autoevaluación de equipo - 4.0
 Logramos una colaboración muy buena durante todo el desarrollo del proyecto. Hubo buena comunicación, compromiso por parte de todos y una distribución equilibrada de las tareas. Cada integrante asumió un rol claro y aportó desde sus fortalezas. Supimos resolver los problemas técnicos que aparecieron y llegamos a un sistema que presenta algunos problemas pero es funcional y cumple de manera aceptable el objetivo planteado.
 
-### Autoevaluación de Eduardo Cuadros - 4.3
-Tuve un papel clave en la parte del Roomba, trabajando en la emisión de la señal ultrasónica y en el control de movimiento. Aporté ideas para resolver varios problemas técnicos y siempre estuve disponible para trabajar en equipo. Me siento satisfecho con mi desempeño y el resultado final del sistema.
+### Autoevaluación de Eduardo Cuadros - 4.5
+Estuve totalmente involucrado en el funcionamiento del robot Roomba, donde tuve un gran aprendizaje de su funcionamiento tanto en la parte de software como en la de hardware. Se tuvieron problemas con el manejo de la interfaz de comunicación entre la Jetson y la base Create2. Sin embargo, poco a poco se lograron algunos objetivos referentes a simulación, creación de paquetes de interfaz de hardware y control de movimiento del robot. Finalmente se tuvo el problema del manejo de los encoders. Después de un arduo trabajo no se pudo realizar una correcta lectura de los valores que estos encoders tienen, ya que en ocasiones no leían bien o no entregaban los bytes suficientes para entender el valor. De esta forma no se pudo continuar con los objetivos de navegación autónoma del robot.
 
 ### Autoevaluación de Andrés Serna - 4.3
 Hice un excelente trabajo dentro del equipo. Me enfoqué especialmente en la parte de hardware y en el funcionamiento del EV3, participando activamente en las pruebas de seguimiento y asegurándome de que la lectura del sensor ultrasónico fuera estable. Me mantuve comprometido durante todas las etapas del proyecto y colaboré de forma constante con mis compañeros.
